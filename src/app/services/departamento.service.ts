@@ -26,4 +26,16 @@ export class DepartamentoService {
   setList(listaNueva: Departamento[]) {
     this.listaCambio.next(listaNueva);
   }
+
+  delete(id:number) {
+    return this.http.delete(`${this.url}/${id}`)
+  }
+
+  listId(id:number) {
+    return this.http.get<Departamento>(`${this.url}/${id}`)
+  }
+
+  update(d:Departamento) {
+    return this.http.put(this.url, d)
+  }
 }
