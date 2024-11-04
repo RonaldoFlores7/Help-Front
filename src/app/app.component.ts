@@ -4,11 +4,12 @@ import { DepartamentoComponent } from './components/departamento/departamento.co
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatButtonModule } from '@angular/material/button';
+import { TipousuarioComponent } from './components/tipousuario/tipousuario.component';
+import { TipodonacionComponent } from './components/tipodonacion/tipodonacion.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [DepartamentoComponent, RouterOutlet, MatToolbarModule, MatMenuModule, MatIconModule, RouterModule],
+  imports: [DepartamentoComponent, RouterOutlet, TipousuarioComponent, TipodonacionComponent, MatToolbarModule, MatMenuModule, MatIconModule, RouterModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

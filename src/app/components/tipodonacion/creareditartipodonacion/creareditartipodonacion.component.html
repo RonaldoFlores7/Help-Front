@@ -1,5 +1,5 @@
 <div class="container" style="text-align: center; margin: 2%">
-  <div><h1>Registro de Departamentos</h1></div>
+  <div><h1>Registro de Tipos de Donaciones</h1></div>
   <div>
     <form [formGroup]="form" (submit)="insertar()">
       <mat-form-field class="example-full-width" *ngIf="edicion">
@@ -8,11 +8,10 @@
       </mat-form-field>
       <br />
       <mat-form-field class="example-full-width">
-        <mat-label>Nombre</mat-label>
-        <input matInput placeholder="Lima" formControlName="hnombre" />
+        <mat-label>Tipo</mat-label>
+        <input matInput placeholder="Monetaria" formControlName="htipo" />
       </mat-form-field>
       <br />
-
       <div>
         <button mat-flat-button class="custom-button">Registrar</button>
       </div>

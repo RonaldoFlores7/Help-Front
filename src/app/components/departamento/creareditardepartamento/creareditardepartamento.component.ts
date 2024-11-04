@@ -6,13 +6,15 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import {
   FormBuilder,
+  FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Departamento } from '../../../models/Departamento';
 import { DepartamentoService } from '../../../services/departamento.service';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-creareditardepartamento',
   standalone: true,
@@ -21,34 +23,65 @@ import { DepartamentoService } from '../../../services/departamento.service';
     MatDatepickerModule,
     MatNativeDateModule,
     MatButtonModule,
-    ReactiveFormsModule],
+    ReactiveFormsModule,
+    CommonModule
+  ],
   templateUrl: './creareditardepartamento.component.html',
   styleUrl: './creareditardepartamento.component.css'
 })
 export class CreareditardepartamentoComponent implements OnInit {
   form: FormGroup = new FormGroup({});
   departamento: Departamento = new Departamento();
+  id:number=0
+  edicion:boolean=false
+
+
   constructor(
     private dS: DepartamentoService,
     private formBuilder: FormBuilder,
-    private router: Router 
+    private router: Router,
+    private route:ActivatedRoute
   ){}
   ngOnInit(): void {
+    this.route.params.subscribe((data:Params)=>{
+      this.id = data['id'];
+      this.edicion = data['id'] != null;
+    this.init()
+    });
+    
     this.form=this.formBuilder.group({
-      hid:['',Validators.required],
+      hcodigo:[''],
       hnombre:['',Validators.required],
     });
   }
   insertar(): void {
     if (this.form.valid) {
-      this.departamento.idDepartamento =this.form.value.hid;
+      this.departamento.idDepartamento=this.form.value.hcodigo;
       this.departamento.nombreDepartamento=this.form.value.hnombre;
-      this.dS.insert(this.departamento).subscribe(data=>{
-        this.dS.list().subscribe(data=>{
-          this.dS.setList(data)
+      if (this.edicion) {
+        this.dS.update(this.departamento).subscribe((data)=>{
+          this.dS.list().subscribe((data)=>{
+            this.dS.setList(data)
+          })
         })
-      });
+      } else {
+        this.dS.insert(this.departamento).subscribe((data)=>{
+          this.dS.list().subscribe((data)=>{
+            this.dS.setList(data)
+          })
+        });
+      }
     }
     this.router.navigate(['departamentos'])
+  }
+  init(){
+    if (this.edicion) {
+      this.dS.listId(this.id).subscribe(data=>{
+        this.form = new FormGroup({
+          hcodigo:new FormControl(data.idDepartamento),
+          hnombre:new FormControl(data.nombreDepartamento)
+        })
+      })      
+    }
   }
 }
