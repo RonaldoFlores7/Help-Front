@@ -1,0 +1,104 @@
+/* Estilo para el contenedor principal */
+.container {
+    padding: 2%;
+    background-color: #f9f9f9;  /* Color de fondo sutil */
+    border-radius: 8px;  /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Sombra sutil */
+    margin: 20px auto; /* Margen superior e inferior con centrado */
+  }
+  
+  /* Título de la página */
+  .container > div:first-child {
+    margin-bottom: 20px;
+  }
+  
+  /* Estilo del título */
+  .container h1 {
+    font-size: 2em;
+    color: #333;  /* Color gris oscuro */
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  /* Estilo para la tabla */
+  table.mat-table {
+    width: 100%;  /* La tabla ocupará todo el ancho disponible */
+    border-collapse: collapse;  /* Para que las celdas no tengan espacio entre ellas */
+    background-color: #fff;  /* Fondo blanco para la tabla */
+  }
+  
+  /* Estilo para las celdas de la tabla */
+  th.mat-header-cell, td.mat-cell {
+    text-align: left;  /* Alineación a la izquierda */
+    padding: 12px;  /* Espaciado interno */
+    font-size: 14px;
+    color: #555;  /* Color gris oscuro */
+    border-bottom: 1px solid #ddd;  /* Línea divisoria entre filas */
+  }
+  
+  /* Estilo para las celdas de la tabla con contenido de tipo fecha */
+  td.mat-cell > .mat-column-fechaDonacion {
+    font-style: italic;
+    color: #888;
+  }
+  
+  /* Estilo para el encabezado de la tabla */
+  th.mat-header-cell {
+    background-color: #00796b;  /* Fondo verde oscuro */
+    color: white;  /* Color blanco para el texto */
+    font-weight: bold;
+    text-transform: uppercase;  /* Texto en mayúsculas */
+  }
+  
+  /* Estilo para las filas de la tabla al pasar el mouse */
+  tr.mat-row:hover {
+    background-color: #f5f5f5;  /* Fondo gris claro al pasar el mouse */
+    cursor: pointer;
+  }
+  
+  /* Estilo para los íconos y botones de acción */
+  .mat-icon {
+    cursor: pointer;
+  }
+  
+  /* Estilo para las celdas con botones de acción */
+  button.mat-raised-button {
+    background-color: #4caf50;  /* Fondo verde para el botón */
+    color: white;  /* Color blanco para el texto */
+    border-radius: 4px;
+    padding: 6px 12px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Estilo para el botón de "Eliminar" */
+  button.mat-raised-button:hover {
+    background-color: #45a049;  /* Color más oscuro cuando el ratón está sobre el botón */
+  }
+  
+  /* Estilo para las celdas de "Acción" */
+  td.mat-cell > mat-icon {
+    color: #e53935;  /* Color rojo para los íconos de eliminar */
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  td.mat-cell > mat-icon:hover {
+    color: #c62828;  /* Color rojo más oscuro al pasar el ratón */
+  }
+  
+  /* Estilo para los botones de "Editar" */
+  td.mat-cell > button.mat-raised-button {
+    background-color: #1976d2;  /* Fondo azul para el botón */
+  }
+  
+  td.mat-cell > button.mat-raised-button:hover {
+    background-color: #1565c0;  /* Color azul más oscuro cuando el ratón está sobre el botón */
+  }
+  
+  /* Estilo para las celdas de la tabla con descripción de campaña */
+  td.mat-cell > .mat-column-descripcionCampania {
+    font-style: italic;
+    color: #757575;
+  }
+  

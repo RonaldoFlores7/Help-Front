@@ -25,6 +25,9 @@
     <button mat-button [matMenuTriggerFor]="menuCampanias" style="color: white">
       Campañas
     </button>
+    <button mat-button [matMenuTriggerFor]="menuDonaciones" style="color: white">
+      Donaciones
+    </button>
   </div>
   
 </mat-toolbar>
@@ -60,5 +63,9 @@
 <mat-menu #menuCampanias="matMenu">
   <button mat-menu-item routerLink="/campanias">Listar</button>
   <button mat-menu-item routerLink="/campanias/nuevo">Registrar</button>
+</mat-menu>
+<mat-menu #menuDonaciones="matMenu">
+  <button mat-menu-item routerLink="/donaciones">Listar</button>
+  <button mat-menu-item routerLink="/donaciones/nuevo">Registrar</button>
 </mat-menu>
 <router-outlet></router-outlet>
