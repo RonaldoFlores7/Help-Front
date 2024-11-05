@@ -1,0 +1,38 @@
+<div class="container" style="text-align: center; margin: 2%">
+  <div><h1>Registro de Usuarios</h1></div>
+  <div>
+    <form [formGroup]="form" (submit)="insertar()">
+        <mat-form-field class="example-full-width">
+            <mat-label>Nombre</mat-label>
+            <input matInput placeholder="Ejem. David" formControlName="hnombre" />
+        </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+            <mat-label>Apellidos</mat-label>
+            <input matInput placeholder="Ejem. Canal" formControlName="hapellidos" />
+        </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+            <mat-label>Correo</mat-label>
+            <input matInput placeholder="Ejem. example@example.com" formControlName="hcorreo" />
+          </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+            <mat-label>Contraseña</mat-label>
+            <input matInput placeholder="******" formControlName="hcontrasenia" />
+        </mat-form-field>
+        <br />
+        <mat-form-field>
+            <mat-label>Tipo</mat-label>
+            <mat-select formControlName="htipo">
+                @for (food of listaTipos; track food) {
+                <mat-option [value]="food.idTipoUsuario">{{ food.nombre }}</mat-option>   
+                }
+            </mat-select>
+        </mat-form-field>
+        <div>
+            <button mat-button class="custom-button">Registrar</button>
+        </div>
+    </form>
+  </div>
+</div>

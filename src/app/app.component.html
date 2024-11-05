@@ -1,18 +1,17 @@
 <mat-toolbar class="custom-toolbar">
   <mat-icon>menu</mat-icon>
   <div>
-    <button mat-button [matMenuTriggerFor]="menuDepartamentos" style="color: #324679">
+    <button mat-button [matMenuTriggerFor]="menuDepartamentos" style="color: white">
       Departamentos
     </button>
-  </div>
-  <div>
-    <button mat-button [matMenuTriggerFor]="menuTipoUsuarios" style="color: #324679">
+    <button mat-button [matMenuTriggerFor]="menuTipoUsuarios" style="color: white">
       Tipo Usuarios
     </button>
-  </div>
-  <div>
-    <button mat-button [matMenuTriggerFor]="menuTipoDonaciones" style="color: #324679">
+    <button mat-button [matMenuTriggerFor]="menuTipoDonaciones" style="color: white">
       Tipo Donaciones
+    </button>
+    <button mat-button [matMenuTriggerFor]="menuUsuarios" style="color: white">
+      Usuarios
     </button>
   </div>
 </mat-toolbar>
@@ -28,5 +27,9 @@
 <mat-menu #menuTipoDonaciones="matMenu">
   <button mat-menu-item routerLink="/tipoDonacion">Listar</button>
   <button mat-menu-item routerLink="/tipoDonacion/nuevo">Registrar</button>
+</mat-menu>
+<mat-menu #menuUsuarios="matMenu">
+  <button mat-menu-item routerLink="/usuarios">Listar</button>
+  <button mat-menu-item routerLink="/usuarios/nuevo">Registrar</button>
 </mat-menu>
 <router-outlet></router-outlet>
