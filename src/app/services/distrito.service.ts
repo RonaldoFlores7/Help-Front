@@ -16,6 +16,7 @@ export class DistritoService {
   list() {
     return this.http.get<Distrito[]>(this.url);
   }
+  
   insert(d: Distrito) {
     return this.http.post(this.url, d);
   }

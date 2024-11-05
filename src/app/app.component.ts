@@ -10,6 +10,8 @@ import { TipocampaniaComponent } from './components/tipocampania/tipocampania.co
 import { DistritoComponent } from './components/distrito/distrito.component';
 import { UsuarioComponent } from './components/usuario/usuario.component';
 import { MatButtonModule } from '@angular/material/button';
+import { PedirayudaComponent } from './components/pedirayuda/pedirayuda.component';
+import { CampaniaComponent } from './components/campania/campania.component';
 
 @Component({
   selector: 'app-root',
@@ -27,6 +29,8 @@ import { MatButtonModule } from '@angular/material/button';
     TipocampaniaComponent,
     UsuarioComponent,
     DistritoComponent,
+    PedirayudaComponent,
+    CampaniaComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',

@@ -1,0 +1,101 @@
+<div class="container">
+  <div style="text-align: center; margin: 10%">
+    <h1>Lista de Campañas</h1>
+  </div>
+  <div>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="cc1">
+        <th mat-header-cell *matHeaderCellDef>Código</th>
+        <td mat-cell *matCellDef="let element">{{ element.idCampania }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="cc2">
+        <th mat-header-cell *matHeaderCellDef>Fecha de Inicio</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.fechaInicio }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="cc3">
+        <th mat-header-cell *matHeaderCellDef>Fecha de Finalización</th>
+        <td mat-cell *matCellDef="let element">{{ element.fechaFin }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="cc4">
+        <th mat-header-cell *matHeaderCellDef>Cuenta Destino</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.cuentaDestino }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="cc5">
+        <th mat-header-cell *matHeaderCellDef>Lugar de Destino de Víveres</th>
+        <td mat-cell *matCellDef="let element">{{ element.lugarDestinoViveres }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="cc6">
+        <th mat-header-cell *matHeaderCellDef>Descripcion de Campaña</th>
+        <td mat-cell *matCellDef="let element">{{ element.descripcionCampania }}</td>
+      </ng-container>
+      
+      <ng-container matColumnDef="cc7">
+        <th mat-header-cell *matHeaderCellDef>Estado de Campaña</th>
+        <td mat-cell *matCellDef="let element">{{ element.estadoCampania }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="cc8">
+        <th mat-header-cell *matHeaderCellDef>Usuario</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.idDamnificado.correo }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="cc9">
+        <th mat-header-cell *matHeaderCellDef>Tipo de Campaña</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.idTipoCampania.descripcionTipoC }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="cc10">
+        <th mat-header-cell *matHeaderCellDef>Tipo de Donación</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.idTipoDonacion.descripcion }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="cc11">
+        <th mat-header-cell *matHeaderCellDef>Distrito</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.idDistrito.nombreDistrito }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="accion01">
+        <th mat-header-cell *matHeaderCellDef>Eliminar</th>
+        <td
+          mat-cell
+          *matCellDef="let element"
+          (click)="eliminar(element.idCampania)"
+        >
+          <mat-icon>delete</mat-icon>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="accion02">
+        <th mat-header-cell *matHeaderCellDef>Actualizar</th>
+        <td mat-cell *matCellDef="let element">
+          <button
+            mat-raised-button
+            [routerLink]="['ediciones', element.idCampania]"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+</div>

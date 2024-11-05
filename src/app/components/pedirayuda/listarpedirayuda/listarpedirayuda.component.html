@@ -1,0 +1,87 @@
+<div class="container">
+  <div style="text-align: center; margin: 10%">
+    <h1>Lista de Pedidos de Ayuda</h1>
+  </div>
+  <div>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="cpa1">
+        <th mat-header-cell *matHeaderCellDef>Código</th>
+        <td mat-cell *matCellDef="let element">{{ element.idPedirAyuda }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="cpa2">
+        <th mat-header-cell *matHeaderCellDef>Tipo de Desastre</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.tipoDesastre }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="cpa3">
+        <th mat-header-cell *matHeaderCellDef>Descripción</th>
+        <td mat-cell *matCellDef="let element">{{ element.descripcion }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="cpa4">
+        <th mat-header-cell *matHeaderCellDef>Latitud</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.latitud }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="cpa5">
+        <th mat-header-cell *matHeaderCellDef>Longitud</th>
+        <td mat-cell *matCellDef="let element">{{ element.longitud }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="cpa6">
+        <th mat-header-cell *matHeaderCellDef>Fecha de Pedido de Ayuda</th>
+        <td mat-cell *matCellDef="let element">{{ element.fechaPedidoAyuda }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="cpa7">
+        <th mat-header-cell *matHeaderCellDef>Estado</th>
+        <td mat-cell *matCellDef="let element">{{ element.estado }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="cpa8">
+        <th mat-header-cell *matHeaderCellDef>Usuario</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.u.correo }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="cpa9">
+        <th mat-header-cell *matHeaderCellDef>Distrito</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.d.nombreDistrito }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="accion01">
+        <th mat-header-cell *matHeaderCellDef>Eliminar</th>
+        <td
+          mat-cell
+          *matCellDef="let element"
+          (click)="eliminar(element.idPedirAyuda)"
+        >
+          <mat-icon>delete</mat-icon>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="accion02">
+        <th mat-header-cell *matHeaderCellDef>Actualizar</th>
+        <td mat-cell *matCellDef="let element">
+          <button
+            mat-raised-button
+            [routerLink]="['ediciones', element.idPedirAyuda]"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+</div>
