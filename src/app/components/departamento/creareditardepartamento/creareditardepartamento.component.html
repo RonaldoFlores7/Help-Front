@@ -1,5 +1,5 @@
 <div class="container" style="text-align: center; margin: 2%">
-  <div><h1>Registro de Departamentos</h1></div>
+  <div><h1>{{ title }}</h1></div>
   <div>
     <form [formGroup]="form" (submit)="insertar()">
       <mat-form-field class="example-full-width" *ngIf="edicion">
@@ -14,7 +14,7 @@
       <br />
 
       <div>
-        <button mat-flat-button class="custom-button">Registrar</button>
+        <button mat-flat-button class="custom-button">{{ buttonText }}</button>
       </div>
     </form>
   </div>

@@ -32,6 +32,8 @@ export class CreareditartipousuarioComponent implements OnInit {
   tipousuario: TipoUsuario = new TipoUsuario();
   id: number = 0;
   edicion: boolean = false;
+  title: string = ''; // Para el título
+  buttonText: string = ''; // Para el texto del botón
 
   constructor(
     private tuS: TipousuarioService,
@@ -44,7 +46,9 @@ export class CreareditartipousuarioComponent implements OnInit {
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
       this.edicion = data['id'] != null;
-    this.init()
+    this.init();
+    this.title = this.edicion ? 'Actualizar TipoUsuario' : 'Registrar TipoUsuario';
+      this.buttonText = this.edicion ? 'Actualizar' : 'Registrar';
     });
 
     this.form = this.formBuilder.group({

@@ -32,6 +32,8 @@ export class CreareditartipodonacionComponent implements OnInit {
   tipodonacion: TipoDonacion = new TipoDonacion();
   id: number = 0;
   edicion: boolean = false;
+  title: string = ''; // Para el título
+  buttonText: string = ''; // Para el texto del botón
 
   constructor(
     private tdS: TipodonacionService,
@@ -44,7 +46,9 @@ export class CreareditartipodonacionComponent implements OnInit {
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
       this.edicion = data['id'] != null;
-    this.init()
+    this.init();
+    this.title = this.edicion ? 'Actualizar TipoDonacion' : 'Registrar TipoDonacion';
+      this.buttonText = this.edicion ? 'Actualizar' : 'Registrar';
     });
 
     this.form = this.formBuilder.group({

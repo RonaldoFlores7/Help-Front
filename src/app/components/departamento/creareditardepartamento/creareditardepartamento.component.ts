@@ -34,7 +34,8 @@ export class CreareditardepartamentoComponent implements OnInit {
   departamento: Departamento = new Departamento();
   id:number=0
   edicion:boolean=false
-
+  title: string = ''; // Para el título
+  buttonText: string = ''; // Para el texto del botón
 
   constructor(
     private dS: DepartamentoService,
@@ -46,7 +47,9 @@ export class CreareditardepartamentoComponent implements OnInit {
     this.route.params.subscribe((data:Params)=>{
       this.id = data['id'];
       this.edicion = data['id'] != null;
-    this.init()
+    this.init();
+    this.title = this.edicion ? 'Actualizar Departamento' : 'Registrar Departamento';
+      this.buttonText = this.edicion ? 'Actualizar' : 'Registrar';
     });
     
     this.form=this.formBuilder.group({

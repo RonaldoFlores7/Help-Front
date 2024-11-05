@@ -1,0 +1,39 @@
+<div class="container">
+    <div style="text-align: center; margin: 10%">
+      <h1>Lista de Tipos de Campañas</h1>
+    </div>
+    <div>
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="c1">
+          <th mat-header-cell *matHeaderCellDef>Código</th>
+          <td mat-cell *matCellDef="let element">{{ element.idTipoCampania}}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="c2">
+          <th mat-header-cell *matHeaderCellDef>Tipo de Campaña</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.descripcionTipoC }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="accion01">
+          <th mat-header-cell *matHeaderCellDef>Eliminar</th>
+          <td mat-cell *matCellDef="let element" (click)="eliminar(element.idTipoCampania)">
+            <mat-icon>delete</mat-icon>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="accion02">
+          <th mat-header-cell *matHeaderCellDef>Actualizar</th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-raised-button [routerLink]="['ediciones',element.idTipoCampania]">
+              <mat-icon>edit</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+        
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </div>
+  </div>
