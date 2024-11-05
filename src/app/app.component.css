@@ -1,31 +1,42 @@
 .custom-toolbar {
-    background-color: #3f51b5; /* Color de fondo de la toolbar */
-    color: white; /* Color del texto */
-    padding: 0 16px; /* Espaciado lateral */
-    display: flex; /* Flexbox para alinear elementos */
-    align-items: center; /* Centrar verticalmente los elementos */
-  }
-  
-  mat-icon {
-    margin-right: 8px; /* Espacio entre el ícono y el texto del botón */
-  }
-  
-  button.mat-button {
-    color: white; /* Color del texto del botón */
-    font-weight: bold; /* Negrita para el texto */
-  }
-  
-  mat-menu {
-    background-color: #ffffff; /* Color de fondo del menú */
-    min-width: 150px; /* Ancho mínimo del menú */
-  }
-  
-  mat-menu button.mat-menu-item {
-    color: #3f51b5; /* Color del texto de los elementos del menú */
-    padding: 10px 20px; /* Espaciado interno de los elementos del menú */
-  }
-  
-  mat-menu button.mat-menu-item:hover {
-    background-color: #f1f1f1; /* Color de fondo al pasar el mouse */
-  }
-  
+  background-color: #FFC966; /* Fondo claro del toolbar */
+  color: #FF2020; /* Color de texto en rojo intenso */
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+}
+
+mat-icon {
+  color: #FF5858; 
+  margin-right: 8px;
+}
+
+button.mat-button {
+  color: #FF2020; /* Color de texto en rojo para los botones */
+  font-weight: bold;
+}
+
+mat-menu {
+  background-color: #FFEBC6; /* Fondo claro del menú */
+  min-width: 150px;
+}
+
+mat-menu button.mat-menu-item {
+  color: #FF2020; /* Color de texto rojo para los elementos del menú */
+  padding: 10px 20px;
+}
+
+mat-menu button.mat-menu-item:hover {
+  background-color: #FFC966; /* Fondo en amarillo más intenso al pasar el mouse */
+}
+
+button.mat-button[matMenuTriggerFor] {
+  background-color: #FF9090; /* Fondo rosado suave para botones con menú desplegable */
+  color: white;
+  border-radius: 4px;
+  margin-right: 8px;
+}
+
+button.mat-button[matMenuTriggerFor]:hover {
+  background-color: #FF5858; /* Fondo en un rojo más oscuro al pasar el mouse */
+}
