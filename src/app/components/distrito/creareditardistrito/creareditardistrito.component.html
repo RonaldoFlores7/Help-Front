@@ -1,0 +1,26 @@
+<div class="container" style="text-align: center; margin: 2%">
+    <div><h1>Registrar Distrito</h1></div>
+    <div>
+      <form [formGroup]="form" (submit)="insertar()">
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Nombre</mat-label>
+          <input matInput placeholder="Lima" formControlName="hnombre" />
+        </mat-form-field>
+        <br />
+        <mat-form-field>
+            <mat-label>Departamentos</mat-label>
+            <mat-select formControlName="hdepartamento" >
+              @for (m of listaDepartamentos; track m) {
+              <mat-option [value]="m.idDepartamento">{{ m.nombreDepartamento }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+
+  
+        <div>
+          <button mat-flat-button class="custom-button">Registrar</button>
+        </div>
+      </form>
+    </div>
+  </div>

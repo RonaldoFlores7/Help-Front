@@ -6,17 +6,28 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { TipousuarioComponent } from './components/tipousuario/tipousuario.component';
 import { TipodonacionComponent } from './components/tipodonacion/tipodonacion.component';
-import { MatButtonModule } from '@angular/material/button';
 import { TipocampaniaComponent } from './components/tipocampania/tipocampania.component';
+import { DistritoComponent } from './components/distrito/distrito.component';
 import { UsuarioComponent } from './components/usuario/usuario.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [DepartamentoComponent, RouterOutlet, TipousuarioComponent, TipodonacionComponent,
-     MatToolbarModule, MatMenuModule, MatIconModule, RouterModule, MatButtonModule, TipocampaniaComponent, UsuarioComponent],
+  imports: [
+    DepartamentoComponent,
+    RouterOutlet,
+    TipousuarioComponent,
+    TipodonacionComponent,
+    MatToolbarModule,
+    MatMenuModule,
+    MatIconModule,
+    RouterModule,
+    TipocampaniaComponent,
+    UsuarioComponent,
+    DistritoComponent,
+  ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
 })
 export class AppComponent {
   title = 'FrontendGrupo4';

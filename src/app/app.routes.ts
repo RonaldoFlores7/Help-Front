@@ -9,6 +9,9 @@ import { UsuarioComponent } from './components/usuario/usuario.component';
 import { CreareditarusuarioComponent } from './components/usuario/creareditarusuario/creareditarusuario.component';
 import { TipocampaniaComponent } from './components/tipocampania/tipocampania.component';
 import { CreareditartipocampaniaComponent } from './components/tipocampania/creareditartipocampania/creareditartipocampania.component';
+import { DistritoComponent } from './components/distrito/distrito.component';
+import { CreareditardistritoComponent } from './components/distrito/creareditardistrito/creareditardistrito.component';
+
 
 
 export const routes: Routes = [
@@ -64,6 +67,17 @@ export const routes: Routes = [
             },
             {
                 path:'ediciones/:id', component:CreareditartipocampaniaComponent
+            }
+        ]
+    },
+    {
+        path:'distritos', component:DistritoComponent,
+        children:[
+            {
+                path:'nuevo', component:CreareditardistritoComponent
+            },
+            {
+                path:'ediciones/:id', component:CreareditardistritoComponent
             }
         ]
     }
