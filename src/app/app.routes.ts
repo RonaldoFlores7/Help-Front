@@ -15,6 +15,8 @@ import { PedirayudaComponent } from './components/pedirayuda/pedirayuda.componen
 import { CreareditarpedirayudaComponent } from './components/pedirayuda/creareditarpedirayuda/creareditarpedirayuda.component';
 import { CampaniaComponent } from './components/campania/campania.component';
 import { CreareditarcampaniaComponent } from './components/campania/creareditarcampania/creareditarcampania.component';
+import { DonacionComponent } from './components/donacion/donacion.component';
+import { CreareditardonacionComponent } from './components/donacion/creareditardonacion/creareditardonacion.component';
 
 
 
@@ -106,5 +108,18 @@ export const routes: Routes = [
                 path:'ediciones/:id', component:CreareditarcampaniaComponent
             }
         ]
+    },
+    {
+        
+         path:'donaciones', component:DonacionComponent,
+         children:[
+             {
+                    path:'nuevo', component:CreareditardonacionComponent
+             },
+             {
+                    path:'ediciones/:id', component:CreareditardonacionComponent
+             }
+        ]
+        
     }
 ];
