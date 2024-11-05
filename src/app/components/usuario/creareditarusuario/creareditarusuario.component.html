@@ -1,7 +1,12 @@
 <div class="container" style="text-align: center; margin: 2%">
-  <div><h1>Registro de Usuarios</h1></div>
+  <div><h1>{{title}}</h1></div>
   <div>
     <form [formGroup]="form" (submit)="insertar()">
+        <mat-form-field class="example-full-width" *ngIf="edicion">
+            <mat-label>Código</mat-label>
+            <input matInput placeholder="1" formControlName="hcodigo" />
+          </mat-form-field>
+          <br />
         <mat-form-field class="example-full-width">
             <mat-label>Nombre</mat-label>
             <input matInput placeholder="Ejem. David" formControlName="hnombre" />
@@ -31,7 +36,7 @@
             </mat-select>
         </mat-form-field>
         <div>
-            <button mat-button class="custom-button">Registrar</button>
+            <button mat-button class="custom-button">{{buttonText}}</button>
         </div>
     </form>
   </div>

@@ -29,4 +29,16 @@ export class UsuarioService {
   getList() {
     return this.listaCambio.asObservable()
   }
+
+  delete(id:number) {
+    return this.http.delete(`${this.url}/${id}`)
+  }
+
+  listId(id:number) {
+    return this.http.get<Usuario>(`${this.url}/${id}`)
+  }
+
+  update(us:Usuario) {
+    return this.http.put(this.url, us)
+  }
 }
