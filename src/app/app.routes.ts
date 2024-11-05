@@ -44,7 +44,7 @@ export const routes: Routes = [
         ]
     },
     {
-        path:'tipoCampania', component:TipocampaniaComponent,
+        path:'tipoCampanias', component:TipocampaniaComponent,
         children:[
             {
                 path:'nuevo', component:CreareditartipocampaniaComponent

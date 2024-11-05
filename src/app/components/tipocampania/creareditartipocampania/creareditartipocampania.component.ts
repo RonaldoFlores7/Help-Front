@@ -68,7 +68,7 @@ export class CreareditartipocampaniaComponent {
         }); 
       }
     }
-    this.router.navigate(['tipoCampania']);
+    this.router.navigate(['tipoCampanias']);
   }
   init() {
     if (this.edicion) {

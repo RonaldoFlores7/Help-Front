@@ -8,7 +8,7 @@ const base_url=environment.base;
   providedIn: 'root'
 })
 export class TipocampaniaService {
-  private url = `${base_url}/tipoCampania`;
+  private url = `${base_url}/tipoCampanias`;
 
   private listaCambio = new Subject<TipoCampania[]>()
 
