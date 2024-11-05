@@ -9,6 +9,7 @@ import { TipodonacionComponent } from './components/tipodonacion/tipodonacion.co
 import { TipocampaniaComponent } from './components/tipocampania/tipocampania.component';
 import { DistritoComponent } from './components/distrito/distrito.component';
 import { UsuarioComponent } from './components/usuario/usuario.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +22,7 @@ import { UsuarioComponent } from './components/usuario/usuario.component';
     MatToolbarModule,
     MatMenuModule,
     MatIconModule,
+    MatButtonModule,
     RouterModule,
     TipocampaniaComponent,
     UsuarioComponent,

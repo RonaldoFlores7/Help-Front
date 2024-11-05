@@ -20,11 +20,23 @@ export class DistritoService {
     return this.http.post(this.url, d);
   }
 
+  setList(listaNueva: Distrito[]) {
+    this.listaCambio.next(listaNueva);
+  }
+  
   getList() {
     return this.listaCambio.asObservable();
   }
 
-  setList(listaNueva: Distrito[]) {
-    this.listaCambio.next(listaNueva);
+  delete(id:number) {
+    return this.http.delete(`${this.url}/${id}`)
+  }
+
+  listId(id:number) {
+    return this.http.get<Distrito>(`${this.url}/${id}`)
+  }
+
+  update(di:Distrito) {
+    return this.http.put(this.url, di)
   }
 }
