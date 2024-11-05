@@ -7,6 +7,8 @@ import { CreareditartipodonacionComponent } from './components/tipodonacion/crea
 import { CreareditartipousuarioComponent } from './components/tipousuario/creareditartipousuario/creareditartipousuario.component';
 import { UsuarioComponent } from './components/usuario/usuario.component';
 import { CreareditarusuarioComponent } from './components/usuario/creareditarusuario/creareditarusuario.component';
+import { TipocampaniaComponent } from './components/tipocampania/tipocampania.component';
+import { CreareditartipocampaniaComponent } from './components/tipocampania/creareditartipocampania/creareditartipocampania.component';
 
 
 export const routes: Routes = [
@@ -41,7 +43,7 @@ export const routes: Routes = [
             {
                 path:'ediciones/:id', component:CreareditartipodonacionComponent
             }
-        ]
+        ]  
     },
     {
         path:'usuarios', component:UsuarioComponent,
@@ -51,6 +53,17 @@ export const routes: Routes = [
             },
             {
                 path:'ediciones/:id', component:CreareditarusuarioComponent
+            }
+        ]
+    },
+    {
+        path:'tipoCampanias', component:TipocampaniaComponent,
+        children:[
+            {
+                path:'nuevo', component:CreareditartipocampaniaComponent
+            },
+            {
+                path:'ediciones/:id', component:CreareditartipocampaniaComponent
             }
         ]
     }

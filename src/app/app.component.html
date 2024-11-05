@@ -14,6 +14,11 @@
       Usuarios
     </button>
   </div>
+  <div>
+    <button mat-button [matMenuTriggerFor]="menuTipoCampanias" style="color: #324679">
+      Tipo Campanias
+    </button>
+  </div>
 </mat-toolbar>
 
 <mat-menu #menuDepartamentos="matMenu">
@@ -31,5 +36,9 @@
 <mat-menu #menuUsuarios="matMenu">
   <button mat-menu-item routerLink="/usuarios">Listar</button>
   <button mat-menu-item routerLink="/usuarios/nuevo">Registrar</button>
+</mat-menu>
+<mat-menu #menuTipoCampanias="matMenu">
+  <button mat-menu-item routerLink="/tipoCampanias">Listar</button>
+  <button mat-menu-item routerLink="/tipoCampanias/nuevo">Registrar</button>
 </mat-menu>
 <router-outlet></router-outlet>
