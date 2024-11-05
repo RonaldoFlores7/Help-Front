@@ -13,15 +13,17 @@
     <button mat-button [matMenuTriggerFor]="menuUsuarios" style="color: white">
       Usuarios
     </button>
-  </div>
-  <div>
     <button mat-button [matMenuTriggerFor]="menuTipoCampanias" style="color: white">
       Tipo Campañas
     </button>
-  </div>
-  <div>
     <button mat-button [matMenuTriggerFor]="menuDistritos" style="color: white">
       Distritos
+    </button>
+    <button mat-button [matMenuTriggerFor]="menuPedirAyudas" style="color: white">
+      Pedidos de Ayuda
+    </button>
+    <button mat-button [matMenuTriggerFor]="menuCampanias" style="color: white">
+      Campañas
     </button>
   </div>
   
@@ -50,5 +52,13 @@
 <mat-menu #menuDistritos="matMenu">
   <button mat-menu-item routerLink="/distritos">Listar</button>
   <button mat-menu-item routerLink="/distritos/nuevo">Registrar</button>
+</mat-menu>
+<mat-menu #menuPedirAyudas="matMenu">
+  <button mat-menu-item routerLink="/pedirAyudas">Listar</button>
+  <button mat-menu-item routerLink="/pedirAyudas/nuevo">Registrar</button>
+</mat-menu>
+<mat-menu #menuCampanias="matMenu">
+  <button mat-menu-item routerLink="/campanias">Listar</button>
+  <button mat-menu-item routerLink="/campanias/nuevo">Registrar</button>
 </mat-menu>
 <router-outlet></router-outlet>

@@ -1,0 +1,117 @@
+<div class="container" style="text-align: center; margin: 2%">
+  <div>
+    <h1>{{ title }}</h1>
+  </div>
+  <div>
+    <form [formGroup]="form" (submit)="insertar()">
+      <mat-form-field class="example-full-width" *ngIf="edicion">
+        <mat-label>Código</mat-label>
+        <input matInput placeholder="1" formControlName="hcodigo" />
+      </mat-form-field>
+      <br />
+      <mat-form-field>
+        <mat-label>Elige una fecha de inicio</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          formControlName="hfechainicio"
+        />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <br />
+      <mat-form-field>
+        <mat-label>Elige una fecha de fin</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          formControlName="hfechafin"
+        />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <br />
+      <mat-form-field class="example-full-width">
+        <mat-label>Cuenta Destino</mat-label>
+        <input
+          matInput
+          placeholder="Ejem. 000000000"
+          formControlName="hcuentadestino"
+        />
+      </mat-form-field>
+      <br />
+      <mat-form-field class="example-full-width">
+        <mat-label>Lugar de Destino de Víveres</mat-label>
+        <input
+          matInput
+          placeholder="Ejem. Av. Calle 123"
+          formControlName="hlugardestinoviveres"
+        />
+      </mat-form-field>
+      <br />
+      <mat-form-field class="example-full-width">
+        <mat-label>Descripción de Campaña</mat-label>
+        <input
+          matInput
+          placeholder="Ejem. Se necesita ayuda por motivo X o Y razón"
+          formControlName="hdescripcioncampania"
+        />
+      </mat-form-field>
+      <br />
+      <mat-form-field class="example-full-width">
+        <mat-label>Estado de Campaña</mat-label>
+        <input matInput placeholder="Ejem. En progreso" formControlName="hestadocampania" />
+      </mat-form-field>
+      <br />
+      <mat-form-field>
+        <mat-label>Correo</mat-label>
+        <mat-select formControlName="hdamnificado">
+          @for (food of listaUsuarios; track food) {
+          <mat-option [value]="food.idUsuario">{{ food.correo }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      <br />
+      <mat-form-field>
+        <mat-label>Tipo de Campaña</mat-label>
+        <mat-select formControlName="htipocampania">
+          @for (food of listaTipoCampanias; track food) {
+          <mat-option [value]="food.idTipoCampania">{{
+            food.descripcionTipoC
+          }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Tipo de Donación</mat-label>
+        <mat-select formControlName="htipodonacion">
+          @for (food of listaTipoDonaciones; track food) {
+          <mat-option [value]="food.idTipoDonacion">{{ food.descripcion }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      <br />
+      <mat-form-field>
+        <mat-label>Distrito</mat-label>
+        <mat-select formControlName="hdistrito">
+          @for (food of listaDistritos; track food) {
+          <mat-option [value]="food.idDistrito">{{
+            food.nombreDistrito
+          }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+      <div>
+        <button mat-button class="custom-button">{{ buttonText }}</button>
+      </div>
+    </form>
+  </div>
+</div>

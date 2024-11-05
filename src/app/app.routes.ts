@@ -11,6 +11,10 @@ import { TipocampaniaComponent } from './components/tipocampania/tipocampania.co
 import { CreareditartipocampaniaComponent } from './components/tipocampania/creareditartipocampania/creareditartipocampania.component';
 import { DistritoComponent } from './components/distrito/distrito.component';
 import { CreareditardistritoComponent } from './components/distrito/creareditardistrito/creareditardistrito.component';
+import { PedirayudaComponent } from './components/pedirayuda/pedirayuda.component';
+import { CreareditarpedirayudaComponent } from './components/pedirayuda/creareditarpedirayuda/creareditarpedirayuda.component';
+import { CampaniaComponent } from './components/campania/campania.component';
+import { CreareditarcampaniaComponent } from './components/campania/creareditarcampania/creareditarcampania.component';
 
 
 
@@ -78,6 +82,28 @@ export const routes: Routes = [
             },
             {
                 path:'ediciones/:id', component:CreareditardistritoComponent
+            }
+        ]
+    },
+    {
+        path:'pedirAyudas', component:PedirayudaComponent,
+        children:[
+            {
+                path:'nuevo', component:CreareditarpedirayudaComponent
+            },
+            {
+                path:'ediciones/:id', component:CreareditarpedirayudaComponent
+            }
+        ]
+    },
+    {
+        path:'campanias', component:CampaniaComponent,
+        children:[
+            {
+                path:'nuevo', component:CreareditarcampaniaComponent
+            },
+            {
+                path:'ediciones/:id', component:CreareditarcampaniaComponent
             }
         ]
     }
