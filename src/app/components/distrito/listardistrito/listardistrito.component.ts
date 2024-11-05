@@ -14,16 +14,23 @@ import { DistritoService } from '../../../services/distrito.service';
 })
 export class ListardistritoComponent implements OnInit{
   dataSource: MatTableDataSource<Distrito> = new MatTableDataSource();
-  displayedColumns:string[]=['c1','c2','c3']
+  displayedColumns:string[]=['cdi1','cdi2','cdi3', 'accion01', 'accion02']
 
-  constructor(private dS: DistritoService) {}
+  constructor(private diS: DistritoService) {}
 
   ngOnInit(): void {
-    this.dS.list().subscribe(data=>{
+    this.diS.list().subscribe((data)=>{
       this.dataSource=new MatTableDataSource(data)
     })
-    this.dS.getList().subscribe(data=>{
+    this.diS.getList().subscribe((data)=>{
       this.dataSource=new MatTableDataSource(data)
+    })
+  }
+  eliminar(id:number) {
+    this.diS.delete(id).subscribe(data=>{
+      this.diS.list().subscribe((data)=>{
+        this.diS.setList(data)
+      })
     })
   }
 }
