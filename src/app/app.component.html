@@ -20,6 +20,12 @@
       Tipo Campanias
     </button>
   </div>
+  <div>
+    <button mat-button [matMenuTriggerFor]="menuDistritos" style="color: #324679">
+      Distritos
+    </button>
+  </div>
+  
 </mat-toolbar>
 
 <mat-menu #menuDepartamentos="matMenu">
@@ -37,5 +43,9 @@
 <mat-menu #menuTipoCampanias="matMenu">
   <button mat-menu-item routerLink="/tipoCampanias">Listar</button>
   <button mat-menu-item routerLink="/tipoCampanias/nuevo">Registrar</button>
+</mat-menu>
+<mat-menu #menuDistritos="matMenu">
+  <button mat-menu-item routerLink="/distritos">Listar</button>
+  <button mat-menu-item routerLink="/distritos/nuevo">Registrar</button>
 </mat-menu>
 <router-outlet></router-outlet>

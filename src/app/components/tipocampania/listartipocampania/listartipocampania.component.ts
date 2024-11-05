@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TipoCampania } from '../../../models/TipoCampania';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
@@ -12,7 +12,7 @@ import { TipocampaniaService } from '../../../services/tipocampania.service';
   templateUrl: './listartipocampania.component.html',
   styleUrl: './listartipocampania.component.css'
 })
-export class ListartipocampaniaComponent {
+export class ListartipocampaniaComponent implements OnInit {
   dataSource:MatTableDataSource<TipoCampania>=new MatTableDataSource()
 
   displayedColumns:string[]=['c1', 'c2', 'accion01', 'accion02']

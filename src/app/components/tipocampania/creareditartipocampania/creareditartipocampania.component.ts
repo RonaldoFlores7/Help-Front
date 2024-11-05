@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -21,7 +21,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
   templateUrl: './creareditartipocampania.component.html',
   styleUrl: './creareditartipocampania.component.css'
 })
-export class CreareditartipocampaniaComponent {
+export class CreareditartipocampaniaComponent implements OnInit{
   form: FormGroup = new FormGroup({});
   tipocampania: TipoCampania = new TipoCampania();
   id: number = 0;
