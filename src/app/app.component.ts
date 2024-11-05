@@ -8,12 +8,13 @@ import { TipousuarioComponent } from './components/tipousuario/tipousuario.compo
 import { TipodonacionComponent } from './components/tipodonacion/tipodonacion.component';
 import { MatButtonModule } from '@angular/material/button';
 import { TipocampaniaComponent } from './components/tipocampania/tipocampania.component';
+import { UsuarioComponent } from './components/usuario/usuario.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [DepartamentoComponent, RouterOutlet, TipousuarioComponent, TipodonacionComponent,
-     MatToolbarModule, MatMenuModule, MatIconModule, RouterModule, MatButtonModule, TipocampaniaComponent],
+     MatToolbarModule, MatMenuModule, MatIconModule, RouterModule, MatButtonModule, TipocampaniaComponent, UsuarioComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
