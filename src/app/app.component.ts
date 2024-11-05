@@ -6,10 +6,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { TipousuarioComponent } from './components/tipousuario/tipousuario.component';
 import { TipodonacionComponent } from './components/tipodonacion/tipodonacion.component';
+import { TipocampaniaComponent } from './components/tipocampania/tipocampania.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [DepartamentoComponent, RouterOutlet, TipousuarioComponent, TipodonacionComponent, MatToolbarModule, MatMenuModule, MatIconModule, RouterModule],
+  imports: [DepartamentoComponent, RouterOutlet, TipousuarioComponent, TipodonacionComponent,
+     MatToolbarModule, MatMenuModule, MatIconModule, RouterModule, TipocampaniaComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

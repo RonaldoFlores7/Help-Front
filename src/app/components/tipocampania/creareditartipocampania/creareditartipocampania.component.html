@@ -1,0 +1,20 @@
+<div class="container" style="text-align: center; margin: 2%">
+    <div><h1>{{title}}</h1></div>
+    <div>
+      <form [formGroup]="form" (submit)="insertar()">
+        <mat-form-field class="example-full-width" *ngIf="edicion">
+          <mat-label>Código</mat-label>
+          <input matInput placeholder="1" formControlName="hcodigo" />
+        </mat-form-field>
+        <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>Tipo</mat-label>
+          <input matInput placeholder="Monetaria" formControlName="htipo" />
+        </mat-form-field>
+        <br />
+        <div>
+          <button mat-flat-button class="custom-button">{{buttonText}}</button>
+        </div>
+      </form>
+    </div>
+  </div>
