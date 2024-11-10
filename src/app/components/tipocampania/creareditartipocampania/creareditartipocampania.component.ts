@@ -122,9 +122,12 @@ export class CreareditartipocampaniaComponent implements OnInit{
   init() {
     if (this.edicion) {
       this.tcS.listId(this.id).subscribe((data) => {
-        this.form = new FormGroup({
+        this.form = this.formBuilder.group({
           hcodigo: new FormControl(data.idTipoCampania),
-          htipo: new FormControl(data.descripcionTipoC),
+          htipo: new FormControl(data.descripcionTipoC, [
+            Validators.required,
+            Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9\s]+$/) // Validación para caracteres especiales
+          ])
         });
       });
     }
