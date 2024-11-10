@@ -46,6 +46,8 @@ export class CreareditarpedirayudaComponent implements OnInit {
   buttonText: string = ''; // Para el texto del botón
   listaDistritos: Distrito[] = [];
   listaUsuarios: Usuario[] = [];
+  map: google.maps.Map | undefined;
+  advancedMarker: google.maps.marker.AdvancedMarkerElement | undefined;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -83,7 +85,76 @@ export class CreareditarpedirayudaComponent implements OnInit {
     this.uS.list().subscribe((data) => {
       this.listaUsuarios = data;
     });
+
+    this.initializeMap();
   }
+
+  ///////////////////////////////////////////////////
+
+  initializeMap(): void {
+    // Inicializa el mapa en una ubicación predeterminada
+    const mapOptions: google.maps.MapOptions = {
+      center: { lat: -12.0464, lng: -77.0428 }, // Ubicación de Lima, Perú
+      zoom: 8,
+    };
+    this.map = new google.maps.Map(
+      document.getElementById('map') as HTMLElement,
+      mapOptions
+    );
+    
+    let marker = new google.maps.Marker({
+      position: mapOptions.center,
+      map: this.map,
+      title: 'Ubicación seleccionada',
+    });
+  
+    // Listener para actualizar las coordenadas en el formulario y mover el marcador
+    this.map.addListener('click', (event: google.maps.MapMouseEvent) => {
+      if (event.latLng) {
+        const clickedLat = event.latLng.lat();
+        const clickedLng = event.latLng.lng();
+  
+        // Actualiza el formulario con las coordenadas del clic
+        this.form.patchValue({
+          hlatitud: clickedLat,
+          hlongitud: clickedLng,
+        });
+  
+        // Mueve el marcador a la nueva posición clickeada
+        marker.setPosition({ lat: clickedLat, lng: clickedLng });
+        
+        // Asegura que el marcador sea visible en el mapa
+        marker.setVisible(true);
+      }
+    /*
+    this.advancedMarker = new google.maps.marker.AdvancedMarkerElement({
+      map: this.map,
+      position: mapOptions.center,
+      title: 'Ubicación del desastre',    //ACA ES LA MODIFCACION DE GLOBITO 
+    });
+   
+
+    
+    // Listener para actualizar las coordenadas en el formulario
+    this.map.addListener('click', (event: google.maps.MapMouseEvent) => {
+      if (event.latLng && this.advancedMarker) {
+        const clickedLat = event.latLng.lat();
+        const clickedLng = event.latLng.lng();
+
+        this.form.patchValue({
+          hlatitud: clickedLat,
+          hlongitud: clickedLng,
+        });
+
+        // Mueve el AdvancedMarker a la nueva posición
+        this.advancedMarker.position = { lat: clickedLat, lng: clickedLng };
+      }
+        */
+    });
+  
+  }  
+
+  //////////////////////////////////
 
   insertar(): void {
     if (this.form.valid) {
@@ -126,6 +197,11 @@ export class CreareditarpedirayudaComponent implements OnInit {
           husuario: new FormControl(data.u.idUsuario),
           hdistrito: new FormControl(data.d.idDistrito),
         });
+        if (this.map && this.advancedMarker) {
+          const center = { lat: data.latitud, lng: data.longitud };
+          this.map.setCenter(center);
+          this.advancedMarker.position = center;
+        }
       });
     }
   }
