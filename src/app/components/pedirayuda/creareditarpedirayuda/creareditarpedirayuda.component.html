@@ -26,20 +26,38 @@
           formControlName="hdescripcion"
         />
       </mat-form-field>
-      <br />
-      <mat-form-field class="example-full-width">
+
+
+
+      <mat-form-field class="example-full-width" style="display: none;">
         <mat-label>Latitud</mat-label>
         <input
           matInput
-          placeholder="Ejem. example@example.com"
+          placeholder="Ejem. -12.0464"
           formControlName="hlatitud"
+          (input)="initializeMap()"
         />
       </mat-form-field>
       <br />
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="example-full-width" style="display: none;">
         <mat-label>Longitud</mat-label>
-        <input matInput placeholder="******" formControlName="hlongitud" />
+        <input
+          matInput
+          placeholder="Ejem. -77.0428"
+          formControlName="hlongitud"
+          (input)="initializeMap()"
+        />
       </mat-form-field>
+
+      <div class="form-group">
+        <label for="map" class="form-label">Ubicación del Desastre</label>
+        <div
+          id="map"
+          style="width: 100%; height: 400px; margin-top: 15px"
+        ></div>
+      </div>
+
+
       <br />
       <mat-form-field>
         <mat-label>Elige una fecha</mat-label>

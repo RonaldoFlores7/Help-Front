@@ -32,3 +32,12 @@
     background-color: #303f9f; /* Color de fondo del botón al pasar el mouse */
   }
   
+  .form-label {
+    text-align: left ;
+    font-size: 16px;
+    font-weight: bold;
+    color: #5a5a5a; /* Ajusta según el color del formulario */
+    margin-bottom: 8px;
+    display: block;
+  }
+  

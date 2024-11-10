@@ -12,6 +12,7 @@ import { UsuarioComponent } from './components/usuario/usuario.component';
 import { MatButtonModule } from '@angular/material/button';
 import { PedirayudaComponent } from './components/pedirayuda/pedirayuda.component';
 import { CampaniaComponent } from './components/campania/campania.component';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 @Component({
   selector: 'app-root',
@@ -30,7 +31,8 @@ import { CampaniaComponent } from './components/campania/campania.component';
     UsuarioComponent,
     DistritoComponent,
     PedirayudaComponent,
-    CampaniaComponent
+    CampaniaComponent,
+    GoogleMapsModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
