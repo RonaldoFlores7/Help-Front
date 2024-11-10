@@ -126,30 +126,7 @@ export class CreareditarpedirayudaComponent implements OnInit {
         // Asegura que el marcador sea visible en el mapa
         marker.setVisible(true);
       }
-    /*
-    this.advancedMarker = new google.maps.marker.AdvancedMarkerElement({
-      map: this.map,
-      position: mapOptions.center,
-      title: 'Ubicación del desastre',    //ACA ES LA MODIFCACION DE GLOBITO 
-    });
-   
-
     
-    // Listener para actualizar las coordenadas en el formulario
-    this.map.addListener('click', (event: google.maps.MapMouseEvent) => {
-      if (event.latLng && this.advancedMarker) {
-        const clickedLat = event.latLng.lat();
-        const clickedLng = event.latLng.lng();
-
-        this.form.patchValue({
-          hlatitud: clickedLat,
-          hlongitud: clickedLng,
-        });
-
-        // Mueve el AdvancedMarker a la nueva posición
-        this.advancedMarker.position = { lat: clickedLat, lng: clickedLng };
-      }
-        */
     });
   
   }  
