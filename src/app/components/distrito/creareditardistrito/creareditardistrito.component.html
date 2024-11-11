@@ -1,7 +1,5 @@
 <div class="container" style="text-align: center; margin: 2%">
-  <div>
-    <h1>{{ title }}</h1>
-  </div>
+  <div><h1>{{ title }}</h1></div>
   <div>
     <form [formGroup]="form" (submit)="insertar()">
       <mat-form-field class="example-full-width" *ngIf="edicion">
@@ -9,23 +7,38 @@
         <input matInput placeholder="1" formControlName="hcodigo" />
       </mat-form-field>
       <br />
+
       <mat-form-field class="example-full-width">
         <mat-label>Nombre</mat-label>
-        <input matInput placeholder="Lima" formControlName="hnombre" />
+        <input matInput placeholder="Ej. San Borja" formControlName="hnombre" />
+        <mat-error *ngIf="form.get('hnombre')?.hasError('required')">
+          El campo es obligatorio
+        </mat-error>
+        <mat-error *ngIf="form.get('hnombre')?.hasError('pattern')">
+          Solo se permiten letras, números y espacios
+        </mat-error>
       </mat-form-field>
       <br />
-      <mat-form-field>
+
+      <mat-form-field class="example-full-width">
         <mat-label>Departamentos</mat-label>
         <mat-select formControlName="hdepartamento">
-          @for (food of listaDepartamentos; track food) {
-          <mat-option [value]="food.idDepartamento">{{ food.nombreDepartamento }}</mat-option>
-          }
+          <mat-option *ngFor="let dep of listaDepartamentos" [value]="dep.idDepartamento">
+            {{ dep.nombreDepartamento }}
+          </mat-option>
         </mat-select>
+        <mat-error *ngIf="form.get('hdepartamento')?.hasError('required')">
+          Seleccione un departamento
+        </mat-error>
       </mat-form-field>
+      <br />
 
       <div>
-        <button mat-flat-button class="custom-button">{{ buttonText }}</button>
+        <button mat-flat-button color="primary" class="custom-button" [disabled]="form.invalid">
+          {{ buttonText }}
+        </button>
       </div>
     </form>
   </div>
 </div>
+
