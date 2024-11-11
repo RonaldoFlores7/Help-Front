@@ -18,6 +18,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-creareditarcampania',
@@ -35,6 +37,7 @@ import { provideNativeDateAdapter } from '@angular/material/core';
   templateUrl: './creareditarcampania.component.html',
   styleUrl: './creareditarcampania.component.css'
 })
+
 export class CreareditarcampaniaComponent implements OnInit {
   form: FormGroup = new FormGroup({});
   ca: Campania = new Campania();
@@ -50,6 +53,7 @@ export class CreareditarcampaniaComponent implements OnInit {
     { value: 'Activo', viewValue: 'Activo' },
     { value: 'Inactivo', viewValue: 'Inactivo' }
   ];
+  minFechaFin: Date | null = null; // propiedad para la fecha mínima
 
   constructor(
     private formBuilder: FormBuilder,
@@ -59,7 +63,8 @@ export class CreareditarcampaniaComponent implements OnInit {
     private tdS: TipodonacionService,
     private dS: DistritoService,
     private uS: UsuarioService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -71,11 +76,12 @@ export class CreareditarcampaniaComponent implements OnInit {
       this.buttonText = this.edicion ? 'Actualizar' : 'Registrar';
     });
 
+    // Inicializar el formulario con validaciones
     this.form = this.formBuilder.group({
       hcodigo: [''],
       hfechainicio: ['', Validators.required],
       hfechafin: ['', Validators.required],
-      hcuentadestino: ['', Validators.required],
+      hcuentadestino: ['',[Validators.required, Validators.pattern(/^\d{10}$/)]], // Solo acepta 10 dígitos
       hlugardestinoviveres: ['', Validators.required],
       hdescripcioncampania: ['', Validators.required],
       hestadocampania: ['', Validators.required],
@@ -85,6 +91,14 @@ export class CreareditarcampaniaComponent implements OnInit {
       hdistrito: ['', Validators.required]
     });
 
+    // Detectar cambios en la fecha de inicio
+    this.form.get('hfechainicio')?.valueChanges.subscribe((fechaInicio) => {
+      if (fechaInicio) {
+        // Actualizar la fecha mínima del datepicker de fecha fin
+        this.minFechaFin = new Date(fechaInicio);
+      }
+    });
+  
     this.tcS.list().subscribe((data) => {
       this.listaTipoCampanias = data;
     });
@@ -100,6 +114,12 @@ export class CreareditarcampaniaComponent implements OnInit {
   }
 
   insertar(): void {
+
+    if (this.form.invalid) {
+      this.snackBar.open('Por favor, complete todos los campos correctamente', 'Cerrar', { duration: 30000 });
+      return;
+    }
+
     if (this.form.valid) {
       this.ca.idCampania = this.form.value.hcodigo;
       this.ca.fechaInicio = this.form.value.hfechainicio;
@@ -127,24 +147,25 @@ export class CreareditarcampaniaComponent implements OnInit {
         });
       }
     }
+    this.snackBar.open(this.edicion ? 'Actualizado con éxito' : 'Registrado con éxito', 'Cerrar', { duration: 30000 });
     this.router.navigate(['campanias']);
-  }
+  } 
 
   init() {
     if (this.edicion) {
-      this.cS.listId(this.id).subscribe((data) => {
-        this.form = new FormGroup({
-          hcodigo: new FormControl(data.idCampania),
-          hfechainicio: new FormControl(data.fechaInicio),
-          hfechafin: new FormControl(data.fechaFin),
-          hcuentadestino: new FormControl(data.cuentaDestino),
-          hlugardestinoviveres: new FormControl(data.lugarDestinoViveres),
-          hdescripcioncampania: new FormControl(data.descripcionCampania),
-          hestadocampania: new FormControl(data.estadoCampania),
-          hdamnificado: new FormControl(data.idDamnificado.idUsuario),
-          htipocampania: new FormControl(data.idTipoCampania.idTipoCampania),
-          htipodonacion: new FormControl(data.idTipoDonacion.idTipoDonacion),
-          hdistrito: new FormControl(data.idDistrito.idDistrito)
+      this.cS.listId(this.id).subscribe(data => {
+        this.form.patchValue({
+          hcodigo: data.idCampania,
+          hfechainicio: data.fechaInicio,
+          hfechafin: data.fechaFin,
+          hcuentadestino: data.cuentaDestino,
+          hlugardestinoviveres: data.lugarDestinoViveres,
+          hdescripcioncampania: data.descripcionCampania,
+          hestadocampania: data.estadoCampania,
+          hdamnificado: data.idDamnificado.idUsuario,
+          htipocampania: data.idTipoCampania.idTipoCampania,
+          htipodonacion: data.idTipoDonacion.idTipoDonacion,
+          hdistrito: data.idDistrito.idDistrito
         });
       });
     }
