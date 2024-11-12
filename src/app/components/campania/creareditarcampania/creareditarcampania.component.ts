@@ -115,11 +115,8 @@ export class CreareditarcampaniaComponent implements OnInit {
 
   insertar(): void {
 
-    if (this.form.invalid) {
-      this.snackBar.open('Por favor, complete todos los campos correctamente', 'Cerrar', { duration: 30000 });
-      return;
-    }
 
+    
     if (this.form.valid) {
       this.ca.idCampania = this.form.value.hcodigo;
       this.ca.fechaInicio = this.form.value.hfechainicio;
@@ -137,17 +134,22 @@ export class CreareditarcampaniaComponent implements OnInit {
         this.cS.update(this.ca).subscribe(() => {
           this.cS.list().subscribe((data) => {
             this.cS.setList(data);
+            this.snackBar.open('Actualizado con éxito', 'Cerrar', { duration: 30000 });
           });
         });
       } else {
         this.cS.insert(this.ca).subscribe(() => {
           this.cS.list().subscribe((data) => {
             this.cS.setList(data);
+            this.snackBar.open('Registrado con éxito', 'Cerrar', { duration: 3000 });
           });
         });
       }
+    } else {
+      this.snackBar.open('complete los campos correctamente', 'Cerrar', { duration: 30000 });
+      return;
     }
-    this.snackBar.open(this.edicion ? 'Actualizado con éxito' : 'Registrado con éxito', 'Cerrar', { duration: 30000 });
+
     this.router.navigate(['campanias']);
   } 
 

@@ -120,17 +120,21 @@ export class CreareditardistritoComponent implements OnInit{
         this.diS.update(this.di).subscribe((data) => {
           this.diS.list().subscribe((data) => {
             this.diS.setList(data);
+            this.snackBar.open('Distrito actualizado con éxito', 'Cerrar', { duration: 30000 });
           });
         }); 
       } else {
         this.diS.insert(this.di).subscribe((data) => {
           this.diS.list().subscribe((data) => {
             this.diS.setList(data);
+            this.snackBar.open('Distrito registrado con éxito', 'Cerrar', { duration: 30000 });
           });
         });
       }
-    }
-
+    } else {
+        this.snackBar.open('complete los campos correctamente', 'Cerrar', { duration: 30000 });
+        return;
+      }
     this.router.navigate(['distritos']);
   }
   

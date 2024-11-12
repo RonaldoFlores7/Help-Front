@@ -121,15 +121,20 @@ export class CreareditarusuarioComponent implements OnInit {
         this.uS.update(this.us).subscribe((data) => {
           this.uS.list().subscribe((data) => {
             this.uS.setList(data);
+            this.snackBar.open('Información del Usuario actualizada con éxito', 'Cerrar', { duration: 30000 });
           });
         });
       } else {
         this.uS.insert(this.us).subscribe((d) => {
           this.uS.list().subscribe((d) => {
             this.uS.setList(d);
+            this.snackBar.open('Usuario registrado con éxito', 'Cerrar', { duration: 30000 });
           });
         });
       }
+    } else {
+      this.snackBar.open('complete los campos correctamente', 'Cerrar', { duration: 30000 });
+      return;
     }
     this.router.navigate(['usuarios']);
   }
