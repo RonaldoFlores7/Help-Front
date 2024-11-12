@@ -1,34 +1,38 @@
 <mat-toolbar class="custom-toolbar">
   <mat-icon>menu</mat-icon>
   <div>
-    <button mat-button [matMenuTriggerFor]="menuDepartamentos" style="color: white">
+    <button mat-button [matMenuTriggerFor]="menuDepartamentos" style="color: rgb(0, 0, 0)">
       Departamentos
     </button>
-    <button mat-button [matMenuTriggerFor]="menuTipoUsuarios" style="color: white">
+    <button mat-button [matMenuTriggerFor]="menuTipoUsuarios" style="color: rgb(0, 0, 0)">
       Tipo Usuarios
     </button>
-    <button mat-button [matMenuTriggerFor]="menuTipoDonaciones" style="color: white">
+    <button mat-button [matMenuTriggerFor]="menuTipoDonaciones" style="color: rgb(0, 0, 0)">
       Tipo Donaciones
     </button>
-    <button mat-button [matMenuTriggerFor]="menuUsuarios" style="color: white">
+    <button mat-button [matMenuTriggerFor]="menuUsuarios" style="color: rgb(0, 0, 0)">
       Usuarios
     </button>
-    <button mat-button [matMenuTriggerFor]="menuTipoCampanias" style="color: white">
+    <button mat-button [matMenuTriggerFor]="menuTipoCampanias" style="color: rgb(0, 0, 0)">
       Tipo Campañas
     </button>
-    <button mat-button [matMenuTriggerFor]="menuDistritos" style="color: white">
+    <button mat-button [matMenuTriggerFor]="menuDistritos" style="color:rgb(0, 0, 0)">
       Distritos
     </button>
-    <button mat-button [matMenuTriggerFor]="menuPedirAyudas" style="color: white">
+    <button mat-button [matMenuTriggerFor]="menuPedirAyudas" style="color: rgb(0, 0, 0)">
       Pedidos de Ayuda
     </button>
-    <button mat-button [matMenuTriggerFor]="menuCampanias" style="color: white">
+    <button mat-button [matMenuTriggerFor]="menuCampanias" style="color: rgb(0, 0, 0)">
       Campañas
     </button>
-    <button mat-button [matMenuTriggerFor]="menuDonaciones" style="color: white">
+    <button mat-button [matMenuTriggerFor]="menuDonaciones" style="color: rgb(0, 0, 0)">
       Donaciones
     </button>
+    <button mat-button [matMenuTriggerFor]="menuReportes" style="color: white">
+      <mat-icon>insert_chart</mat-icon>Reportes
+    </button>
   </div>
+
   
 </mat-toolbar>
 
@@ -67,5 +71,11 @@
 <mat-menu #menuDonaciones="matMenu">
   <button mat-menu-item routerLink="/donaciones">Listar</button>
   <button mat-menu-item routerLink="/donaciones/nuevo">Registrar</button>
+</mat-menu>
+<mat-menu #menuReportes="matMenu">
+  <button mat-menu-item routerLink="/reportes"><mat-icon> pie_chart</mat-icon>
+    DonacionesMes</button>
+  <button mat-menu-item routerLink="/reportes/donacionesPorUsuario"><mat-icon> bar_chart</mat-icon>
+    DonacionesUsuario</button>
 </mat-menu>
 <router-outlet></router-outlet>

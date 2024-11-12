@@ -17,6 +17,9 @@ import { CampaniaComponent } from './components/campania/campania.component';
 import { CreareditarcampaniaComponent } from './components/campania/creareditarcampania/creareditarcampania.component';
 import { DonacionComponent } from './components/donacion/donacion.component';
 import { CreareditardonacionComponent } from './components/donacion/creareditardonacion/creareditardonacion.component';
+import { ReportesComponent } from './components/reportes/reportes.component';
+import { Component } from '@angular/core';
+import { DonacionesporusuarioComponent } from './components/reportes/donacionesporusuario/donacionesporusuario.component';
 
 
 
@@ -121,5 +124,13 @@ export const routes: Routes = [
              }
         ]
         
+    },
+    {
+        path:'reportes',component:ReportesComponent,
+      children:[
+        {
+          path: 'donacionesPorUsuario', component:DonacionesporusuarioComponent
+        }
+      ]
     }
 ];

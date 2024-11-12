@@ -1,0 +1,15 @@
+.right-panel {
+    flex: 1; /* Panel derecho toma 1 parte del espacio */
+    padding: 40px;
+    background-color: #ff6b6b;
+    color: white;
+    overflow-y: auto;
+    text-align: left;
+  }
+
+  .logo {
+    max-width: 100%; /* Ajusta el tamaño de la imagen de logo */
+    height: auto;
+    display: block;
+    margin: 20px auto; /* Centra el logo y añade margen superior/inferior */
+  }

@@ -1,19 +1,34 @@
 <div class="container" style="text-align: center; margin: 2%">
-  <div><h1>{{title}}</h1></div>
-  <div>
+  <div class="left-panel">
+    <h1>Empecemos a crear un tipo de Donación </h1>
+    <img src="icons/perulogo2.png" alt="Mapa" class="map-image">
+  </div>
+  
+  <div class="right-panel">
+    <img src="icons/helplogo.png" alt="Logo" class="logo">
     <form [formGroup]="form" (submit)="insertar()">
       <mat-form-field class="example-full-width" *ngIf="edicion">
         <mat-label>Código</mat-label>
         <input matInput placeholder="1" formControlName="hcodigo" />
       </mat-form-field>
-      <br />
+      <br/>
+      
       <mat-form-field class="example-full-width">
-        <mat-label>Tipo</mat-label>
-        <input matInput placeholder="Monetaria" formControlName="htipo" />
+        <mat-label>Tipo de Donacion</mat-label>
+        <input matInput placeholder="Tipo de Donación" formControlName="htipo" />
+        <mat-error *ngIf="form.get('htipo')?.hasError('required')">
+          El campo es obligatorio
+        </mat-error>
+        <mat-error *ngIf="form.get('htipo')?.hasError('pattern')">
+          Solo se permiten letras, números y espacios
+        </mat-error>
       </mat-form-field>
-      <br />
+      <br/>
+
       <div>
-        <button mat-flat-button class="custom-button">{{buttonText}}</button>
+        <button mat-flat-button color="primary" class="custom-button">
+          {{ buttonText }}
+        </button>
       </div>
     </form>
   </div>

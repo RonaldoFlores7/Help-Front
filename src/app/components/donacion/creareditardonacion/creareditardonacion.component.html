@@ -1,8 +1,10 @@
 <div class="container" style="text-align: center; margin: 2%">
-    <div>
-      <h1>{{ title }}</h1>
-    </div>
-    <div>
+  <div class="left-panel">
+    <h1>Empecemos a crear una donación</h1>
+    <img src="icons/perulogo2.png" alt="Mapa" class="map-image">
+  </div>
+  <div class="right-panel">
+    <img src="icons/helplogo.png" alt="Logo" class="logo">
       <form [formGroup]="form" (submit)="insertar()">
         <mat-form-field class="example-full-width" *ngIf="edicion">
           <mat-label>Código</mat-label>
@@ -10,43 +12,48 @@
         </mat-form-field>
 
         <br />
+
         <mat-form-field class="example-full-width">
-          <mat-label>Teléfono</mat-label>
-          <input matInput placeholder="999999999" formControlName="htelefono" />
+          <mat-label>Teléfono </mat-label>
+          <input matInput formControlName="htelefono" placeholder="999999999">
+          <mat-error *ngIf="form.get('htelefono')?.hasError('required')">El teléfono es obligatorio</mat-error>
+          <mat-error *ngIf="form.get('htelefono')?.hasError('pattern')">Debe tener 9 dígitos numericos</mat-error>
         </mat-form-field>
         <br />
 
         <mat-form-field class="example-full-width">
           <mat-label>Monto Transferido</mat-label>
-          <input matInput placeholder="150" formControlName="hmontotransferido" />
+          <input matInput formControlName="hmontotransferido" placeholder="150">
+          <mat-error *ngIf="form.get('hmontotransferido')?.hasError('required')">En caso de no Donar dinero, colocar 0</mat-error>
+          <mat-error *ngIf="form.get('hmontotransferido')?.hasError('pattern')">Monto inválido</mat-error>
         </mat-form-field>
         <br />
 
         <mat-form-field class="example-full-width">
           <mat-label>Descripción Donación</mat-label>
           <input matInput placeholder="Esta donación..." formControlName="hdescripciondonacion" />
+          <mat-error *ngIf="form.get('hdescripciondonacion')?.hasError('required')">La descripcion es obligatoria</mat-error>
         </mat-form-field>
         <br />
 
-        <mat-form-field>
-            <mat-label>Elige una fecha</mat-label>
-            <input
-              matInput
-              [matDatepicker]="picker"
-              formControlName="hfechadonacion"
-            />
-            <mat-hint>MM/DD/YYYY</mat-hint>
-            <mat-datepicker-toggle
-              matIconSuffix
-              [for]="picker"
-            ></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-          <br />
+        <mat-form-field class="example-full-width">
+          <mat-label>Elige una fecha</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="hfechadonacion" [max]="maxFechaDonacion">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="form.get('hfechadonacion')?.hasError('required')">La fecha es obligatoria</mat-error>
+        </mat-form-field>
+
+        <br />
     
         <mat-form-field class="example-full-width">
           <mat-label>Estado</mat-label>
-          <input matInput placeholder="Activo" formControlName="hestado" />
+          <mat-select formControlName="hestado">
+            <mat-option *ngFor="let estado of estados" [value]="estado.value">
+              {{ estado.viewValue }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="form.get('hestado')?.hasError('required')">El estado es obligatorio</mat-error>
         </mat-form-field>
         <br />
 
@@ -57,15 +64,17 @@
             <mat-option [value]="food.idUsuario">{{ food.nombre }}</mat-option>
             }
           </mat-select>
+          <mat-error *ngIf="form.get('husuario')?.hasError('required')">El nombre de usuario es obligatorio</mat-error>
         </mat-form-field>
   
         <mat-form-field>
-            <mat-label>Campaña</mat-label>
+            <mat-label>Campaña </mat-label>
             <mat-select formControlName="hcampania">
               @for (food of listaCampanias; track food) {
               <mat-option [value]="food.idCampania">{{ food.descripcionCampania }}</mat-option>
               }
             </mat-select>
+            <mat-error *ngIf="form.get('hcampania')?.hasError('required')">Elegir la campaña es obligatorio</mat-error>
           </mat-form-field>
 
           <mat-form-field>
@@ -75,6 +84,7 @@
               <mat-option [value]="food.idTipoDonacion">{{ food.descripcion}}</mat-option>
               }
             </mat-select>
+            <mat-error *ngIf="form.get('htipodonacion')?.hasError('required')">Elegir el tipo de donacion es obligatorio</mat-error>
           </mat-form-field>
 
         <div>
