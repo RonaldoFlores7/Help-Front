@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Campania } from '../models/Campania';
 import { HttpClient } from '@angular/common/http';
+import { QuantityVolunteerByCampaniaDTO } from '../models/QuantityVolunteerByCampaniaDTO';
+import { SumDonationsByCampaniaDTO } from '../models/SumDonationsByCampaniaDTO';
 
 const base_url = environment.base;
 @Injectable({
@@ -43,4 +45,13 @@ export class CampaniaService {
   update(ca:Campania) {
     return this.http.put(this.url, ca)
   }
+
+  getQuantityVolunteerByCampania():Observable<QuantityVolunteerByCampaniaDTO[]>{
+    return this.http.get<QuantityVolunteerByCampaniaDTO[]>(`${this.url}/voluntariosPorCampania`)
+  }
+
+  getSumDonationsByCampania():Observable<SumDonationsByCampaniaDTO[]>{
+    return this.http.get<SumDonationsByCampaniaDTO[]>(`${this.url}/donacionesPorCampania`)
+  }
+
 }

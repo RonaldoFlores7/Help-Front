@@ -20,6 +20,8 @@ import { CreareditardonacionComponent } from './components/donacion/creareditard
 import { ReportesComponent } from './components/reportes/reportes.component';
 import { Component } from '@angular/core';
 import { DonacionesporusuarioComponent } from './components/reportes/donacionesporusuario/donacionesporusuario.component';
+import { DonacionesporcampaniaComponent } from './components/reportes/donacionesporcampania/donacionesporcampania.component';
+import { VoluntariosporcampaniaComponent } from './components/reportes/voluntariosporcampania/voluntariosporcampania.component';
 
 
 
@@ -130,6 +132,12 @@ export const routes: Routes = [
       children:[
         {
           path: 'donacionesPorUsuario', component:DonacionesporusuarioComponent
+        },
+        {
+               path:'donacionesPorCampania', component:DonacionesporcampaniaComponent
+        },
+        {
+               path:'voluntariosPorCampania', component:VoluntariosporcampaniaComponent
         }
       ]
     }
