@@ -17,6 +17,7 @@ import { TipousuarioService } from '../../../services/tipousuario.service';
 import { TipodonacionService } from '../../../services/tipodonacion.service';
 import { MatDatepicker, MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-creareditardonacion',
@@ -44,6 +45,12 @@ export class CreareditardonacionComponent implements OnInit {
   listaDonadores: Usuario[] = [];
   listaCampanias: Campania[]=[];
   listaTipoDonaciones: TipoDonacion[]=[];
+  maxFechaDonacion: Date = new Date(); // Fecha máxima permitida para la donación
+  estados = [
+    { value: 'Completado', viewValue: 'Completado' },
+    { value: 'Pendiente', viewValue: 'Pendiente' },
+    { value: 'En Proceso', viewValue: 'En Proceso' } 
+  ];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -52,8 +59,10 @@ export class CreareditardonacionComponent implements OnInit {
     private usuS: UsuarioService,
     private cS: CampaniaService,
     private tdS: TipodonacionService,
-    private route:ActivatedRoute
+    private route:ActivatedRoute,
+    private snackBar: MatSnackBar
   ) {}
+
   ngOnInit(): void {
 
     this.route.params.subscribe((data:Params) => {
@@ -65,17 +74,19 @@ export class CreareditardonacionComponent implements OnInit {
     })
 
 
-    this.form = this.formBuilder.group({
+     this.form = this.formBuilder.group({
       hcodigo: [''],
-      htelefono: ['', Validators.required],
-      hmontotransferido: ['', Validators.required],
+      htelefono: ['', [Validators.required, Validators.pattern(/^\d{9}$/)]],
+      hmontotransferido: ['', [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]],
       hdescripciondonacion: ['', Validators.required],
-      hfechadonacion: ['', Validators.required],
+      hfechadonacion: ['', [Validators.required]],
       hestado: ['', Validators.required],
       husuario: ['', Validators.required],
       hcampania: ['', Validators.required],
-      htipodonacion: ['', Validators.required],
+      htipodonacion: ['', Validators.required]
     });
+
+
     this.usuS.list().subscribe((data) => {
       this.listaDonadores = data;
     });
@@ -87,6 +98,11 @@ export class CreareditardonacionComponent implements OnInit {
     });
   }
   insertar(): void {
+    if (this.form.invalid) {
+      this.snackBar.open('Por favor, complete todos los campos correctamente', 'Cerrar', { duration: 30000 });
+      return;
+    }
+
     if (this.form.valid) {
       this.do.idDonacion = this.form.value.hcodigo;
       this.do.telefono = this.form.value.htelefono;
@@ -101,6 +117,7 @@ export class CreareditardonacionComponent implements OnInit {
         this.doS.update(this.do).subscribe((data) => {
           this.doS.list().subscribe((data) => {
             this.doS.setList(data);
+            this.snackBar.open('Actualizado con éxito', 'Cerrar', { duration: 30000 });
           });
         }); 
       } else {
@@ -111,21 +128,23 @@ export class CreareditardonacionComponent implements OnInit {
         });
       }
     }
+    this.snackBar.open('Registrado con éxito', 'Cerrar', { duration: 3000 });
     this.router.navigate(['donaciones']);
   }
+
   init() {
     if (this.edicion) {
-      this.doS.listId(this.id).subscribe((data) => {
-        this.form = new FormGroup({
-          hcodigo: new FormControl(data.idDonacion),
-          htelefono: new FormControl(data.telefono),
-          hmontotransferido: new FormControl(data.montoTransferido),
-          hdescripciondonacion: new FormControl(data.descripcionDonacion),
-          hfechadonacion: new FormControl(data.fechaDonacion),
-          hestado: new FormControl(data.estado),
-          husuario: new FormControl(data.us.idUsuario),
-          hcampania: new FormControl(data.ca.idCampania),
-          htipodonacion: new FormControl(data.td.idTipoDonacion),
+      this.doS.listId(this.id).subscribe(data => {
+        this.form.patchValue({
+          hcodigo: data.idDonacion,
+          htelefono: data.telefono,
+          hmontotransferido: data.montoTransferido,
+          hdescripciondonacion: data.descripcionDonacion,
+          hfechadonacion: data.fechaDonacion,
+          hestado: data.estado,
+          husuario: data.us.idUsuario,
+          hcampania: data.ca.idCampania,
+          htipodonacion: data.td.idTipoDonacion
         });
       });
     }
