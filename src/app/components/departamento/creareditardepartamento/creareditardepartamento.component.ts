@@ -15,6 +15,8 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Departamento } from '../../../models/Departamento';
 import { DepartamentoService } from '../../../services/departamento.service';
 import { CommonModule } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 @Component({
   selector: 'app-creareditardepartamento',
   standalone: true,
@@ -36,28 +38,72 @@ export class CreareditardepartamentoComponent implements OnInit {
   edicion:boolean=false
   title: string = ''; // Para el título
   buttonText: string = ''; // Para el texto del botón
+  existingDepartments: Departamento[] = [];
 
   constructor(
     private dS: DepartamentoService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private route:ActivatedRoute
+    private route:ActivatedRoute,
+    private snackBar: MatSnackBar
   ){}
+
   ngOnInit(): void {
+
+    // Cargar la lista de departamentos al iniciar
+    this.dS.list().subscribe((data) => {
+      this.existingDepartments = data;
+    });
+
     this.route.params.subscribe((data:Params)=>{
       this.id = data['id'];
       this.edicion = data['id'] != null;
-    this.init();
-    this.title = this.edicion ? 'Actualizar Departamento' : 'Registrar Departamento';
+      this.init();
+      this.title = this.edicion ? 'Actualizar Departamento' : 'Registrar Departamento';
       this.buttonText = this.edicion ? 'Actualizar' : 'Registrar';
     });
     
-    this.form=this.formBuilder.group({
-      hcodigo:[''],
-      hnombre:['',Validators.required],
+    // Inicializar el formulario con validación
+    this.form = this.formBuilder.group({
+      hcodigo: [''],
+      hnombre: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9\s]+$/) // Validación para evitar caracteres especiales
+        ]
+      ]
     });
   }
+
+  private isDuplicated(nombre: string): boolean {
+    const nombreLower = nombre.trim().toLowerCase();
+    if (this.edicion) {
+      return this.existingDepartments.some(
+        (departamento) =>
+          departamento.nombreDepartamento.trim().toLowerCase() === nombreLower &&
+          departamento.idDepartamento !== this.id
+      );
+    } else {
+      return this.existingDepartments.some(
+        (departamento) => departamento.nombreDepartamento.trim().toLowerCase() === nombreLower
+      );
+    }
+  }
+
   insertar(): void {
+
+    const nombre = this.form.value.hnombre?.trim();
+
+    // Validar si ya existe un departamento con el mismo nombre
+    if (this.isDuplicated(nombre)) {
+      this.snackBar.open('El departamento ya existe', 'Cerrar', {
+        duration: 30000,
+        panelClass: ['snackbar-error']
+      });
+      return;
+    }
+
     if (this.form.valid) {
       this.departamento.idDepartamento=this.form.value.hcodigo;
       this.departamento.nombreDepartamento=this.form.value.hnombre;
@@ -77,14 +123,18 @@ export class CreareditardepartamentoComponent implements OnInit {
     }
     this.router.navigate(['departamentos'])
   }
-  init(){
+
+  init() {
     if (this.edicion) {
-      this.dS.listId(this.id).subscribe(data=>{
-        this.form = new FormGroup({
-          hcodigo:new FormControl(data.idDepartamento),
-          hnombre:new FormControl(data.nombreDepartamento)
-        })
-      })      
+      this.dS.listId(this.id).subscribe(data => {
+        this.form = this.formBuilder.group({
+          hcodigo: new FormControl(data.idDepartamento),
+          hnombre: new FormControl(data.nombreDepartamento, [
+            Validators.required,
+            Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9\s]+$/) // Validación para evitar caracteres especiales
+          ])
+        });
+      });
     }
   }
 }

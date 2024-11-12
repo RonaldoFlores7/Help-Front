@@ -13,6 +13,7 @@ import { TipoUsuario } from '../../../models/TipoUsuario';
 import { TipousuarioService } from '../../../services/tipousuario.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-creareditartipousuario',
@@ -34,29 +35,72 @@ export class CreareditartipousuarioComponent implements OnInit {
   edicion: boolean = false;
   title: string = ''; // Para el título
   buttonText: string = ''; // Para el texto del botón
+  existingUsers: TipoUsuario[] = [];
 
   constructor(
     private tuS: TipousuarioService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
+
+    // Cargar la lista de tipos de usuario al iniciar
+    this.tuS.list().subscribe((data) => {
+      this.existingUsers = data;
+    });
+
     this.route.params.subscribe((data: Params) => {
       this.id = data['id'];
       this.edicion = data['id'] != null;
-    this.init();
-    this.title = this.edicion ? 'Actualizar TipoUsuario' : 'Registrar TipoUsuario';
+      this.init();
+      this.title = this.edicion ? 'Actualizar Tipo de Usuario' : 'Registrar Tipo de Usuario';
       this.buttonText = this.edicion ? 'Actualizar' : 'Registrar';
     });
 
+     // Inicializar el formulario con validación para caracteres especiales
     this.form = this.formBuilder.group({
       hcodigo: [''],
-      htipo: ['', Validators.required],
+      htipo: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9\s]+$/) // Solo letras, números y espacios
+        ]
+      ]
     });
   }
+
+  private isDuplicated(nombre: string): boolean {
+    const nombreLower = nombre.trim().toLowerCase();
+    if (this.edicion) {
+      return this.existingUsers.some(
+        (usuario) =>
+          usuario.nombre.trim().toLowerCase() === nombreLower &&
+          usuario.idTipoUsuario !== this.id
+      );
+    } else {
+      return this.existingUsers.some(
+        (usuario) => usuario.nombre.trim().toLowerCase() === nombreLower
+      );
+    }
+  }
+
   insertar(): void {
+
+    const nombre = this.form.value.htipo?.trim();
+
+    // Validar si ya existe un tipo de usuario con el mismo nombre
+    if (this.isDuplicated(nombre)) {
+      this.snackBar.open('El tipo de usuario ya existe', 'Cerrar', {
+        duration: 30000,
+        panelClass: ['snackbar-error']
+      });
+      return;
+    }
+
     if (this.form.valid) {
       this.tipousuario.idTipoUsuario = this.form.value.hcodigo;
       this.tipousuario.nombre = this.form.value.htipo;
@@ -76,14 +120,19 @@ export class CreareditartipousuarioComponent implements OnInit {
     }
     this.router.navigate(['tipoUsuarios']);
   }
+  
   init() {
     if (this.edicion) {
       this.tuS.listId(this.id).subscribe((data) => {
-        this.form = new FormGroup({
+        this.form = this.formBuilder.group({
           hcodigo: new FormControl(data.idTipoUsuario),
-          htipo: new FormControl(data.nombre),
+          htipo: new FormControl(data.nombre, [
+            Validators.required,
+            Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9\s]+$/)
+          ])
         });
       });
     }
   }
 }
+    
