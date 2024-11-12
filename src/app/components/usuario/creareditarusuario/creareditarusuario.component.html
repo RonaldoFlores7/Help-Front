@@ -1,6 +1,11 @@
 <div class="container" style="text-align: center; margin: 2%">
-  <div><h1>{{title}}</h1></div>
-  <div>
+  <div class="left-panel">
+    <h1>Empecemos a crear un Usuario</h1>
+    <img src="icons/perulogo2.png" alt="Mapa" class="map-image">
+  </div>
+
+  <div class="right-panel">
+    <img src="icons/helplogo.png" alt="Logo" class="logo">
     <form [formGroup]="form" (submit)="insertar()">
         <mat-form-field class="example-full-width" *ngIf="edicion">
             <mat-label>Código</mat-label>

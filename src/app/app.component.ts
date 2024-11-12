@@ -14,6 +14,7 @@ import { PedirayudaComponent } from './components/pedirayuda/pedirayuda.componen
 import { CampaniaComponent } from './components/campania/campania.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -39,4 +40,5 @@ import { GoogleMapsModule } from '@angular/google-maps';
 })
 export class AppComponent {
   title = 'FrontendGrupo4';
+
 }

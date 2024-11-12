@@ -1,4 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 
+html, body {  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+body {
+    background-image: url('/icons/images1.jpg');
+    background-color: rgb(255, 198, 0);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 170em;;
+}

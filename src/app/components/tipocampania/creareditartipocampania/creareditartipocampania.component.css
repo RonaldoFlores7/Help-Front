@@ -1,17 +1,51 @@
 .container {
-    max-width: 600px; /* Ancho máximo del contenedor */
-    margin: 2% auto; /* Centrar el contenedor horizontalmente */
-    padding: 20px; /* Espaciado interno */
-    background-color: #ffffff; /* Color de fondo */
-    border-radius: 8px; /* Bordes redondeados */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    text-align: center; /* Centrar el texto */
+  display: flex;
+  max-width: 1200px;
+  margin: 5% auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  background-color: rgb(255, 255, 255);
+  height: 80vh; 
+  }
+
+  .left-panel {
+    flex: 1;
+    padding: 40px;
+    background-color: rgb(238, 230, 230);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .left-panel p {
+    margin-bottom: 20px;
+    font-size: 18px; /* Tamaño de fuente más grande */
+    color: #333;
+  }
+
+  .map-image {
+    max-width: 80%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .logo {
+    max-width: 100%; /* Ajusta el tamaño de la imagen de logo */
+    height: auto;
+    display: block;
+    margin: 20px auto; /* Centra el logo y añade margen superior/inferior */
   }
   
-  h1 {
-    color: #3f51b5; /* Color del título */
-    font-size: 28px; /* Tamaño de la fuente */
-    margin-bottom: 20px; /* Espaciado debajo del título */
+  .right-panel {
+    flex: 2;
+    padding: 40px;
+    background-color: #ff6b6b;
+    color: white;
+    overflow-y: auto;
   }
   
   mat-form-field {
