@@ -103,17 +103,19 @@ export class CreareditartipocampaniaComponent implements OnInit{
         this.tcS.update(this.tipocampania).subscribe((data)=>{
           this.tcS.list().subscribe((data)=>{
             this.tcS.setList(data)
+            this.snackBar.open('Tipo de Campaña actualizada con éxito', 'Cerrar', { duration: 30000 });
           })
         })
       } else {
         this.tcS.insert(this.tipocampania).subscribe((d) => {
           this.tcS.list().subscribe((d) => {
             this.tcS.setList(d);
+            this.snackBar.open('Tipo de Campaña registrada con éxito', 'Cerrar', { duration: 30000 });
           });
         }); 
       }
     } else {
-      console.error('Formulario no válido');
+      this.snackBar.open('complete los campos correctamente', 'Cerrar', { duration: 30000 });
       return;
     }
     this.router.navigate(['tipoCampanias']);
@@ -126,7 +128,7 @@ export class CreareditartipocampaniaComponent implements OnInit{
           hcodigo: new FormControl(data.idTipoCampania),
           htipo: new FormControl(data.descripcionTipoC, [
             Validators.required,
-            Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9\s]+$/) // Validación para caracteres especiales
+            Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9\s]+$/)
           ])
         });
       });
