@@ -7,20 +7,32 @@
   <div class="right-panel">
     <img src="icons/helplogo.png" alt="Logo" class="logo">
     <form [formGroup]="form" (submit)="insertar()">
+
       <mat-form-field class="example-full-width" *ngIf="edicion">
         <mat-label>Código</mat-label>
         <input matInput placeholder="1" formControlName="hcodigo" />
       </mat-form-field>
       <br />
+
       <mat-form-field class="example-full-width">
         <mat-label>Nombre</mat-label>
-        <input matInput placeholder="Lima" formControlName="hnombre" />
+        <input matInput placeholder="Ejm. Lima" formControlName="hnombre" />
+        <mat-error *ngIf="form.get('hnombre')?.hasError('required')">
+          El campo es obligatorio
+        </mat-error>
+        <mat-error *ngIf="form.get('hnombre')?.hasError('pattern')">
+          Solo se permiten letras, números y espacios
+        </mat-error>
       </mat-form-field>
       <br />
 
       <div>
-        <button mat-flat-button class="custom-button">{{ buttonText }}</button>
+        <button mat-flat-button color="primary" class="custom-button">
+          {{ buttonText }}
+        </button>
       </div>
+
     </form>
   </div>
 </div>
+
