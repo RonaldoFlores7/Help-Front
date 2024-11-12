@@ -28,6 +28,9 @@
     <button mat-button [matMenuTriggerFor]="menuDonaciones" style="color: white">
       Donaciones
     </button>
+    <button mat-button [matMenuTriggerFor]="menuReportes" style="color: white">
+      <mat-icon>insert_chart</mat-icon>Reportes
+    </button>
   </div>
   
 </mat-toolbar>
@@ -67,5 +70,11 @@
 <mat-menu #menuDonaciones="matMenu">
   <button mat-menu-item routerLink="/donaciones">Listar</button>
   <button mat-menu-item routerLink="/donaciones/nuevo">Registrar</button>
+</mat-menu>
+<mat-menu #menuReportes="matMenu">
+  <button mat-menu-item routerLink="/reportes"><mat-icon> pie_chart</mat-icon>
+    DonacionesMes</button>
+  <button mat-menu-item routerLink="/reportes/donacionesPorUsuario"><mat-icon> bar_chart</mat-icon>
+    DonacionesUsuario</button>
 </mat-menu>
 <router-outlet></router-outlet>
