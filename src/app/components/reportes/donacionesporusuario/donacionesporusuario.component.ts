@@ -32,8 +32,8 @@ export class DonacionesporusuarioComponent implements OnInit{
       {
         data:data.map(item=>item.totalDonaciones),
         label:'Donaciones',
-        backgroundColor:['#e14625','#de725c'],
-        borderColor:'#ef3510',
+        backgroundColor:['#ffeb3b','#fbc02d'],
+        borderColor:'#757575',
         borderWidth:1
       }
     ]
