@@ -111,15 +111,20 @@ export class CreareditardepartamentoComponent implements OnInit {
         this.dS.update(this.departamento).subscribe((data)=>{
           this.dS.list().subscribe((data)=>{
             this.dS.setList(data)
+            this.snackBar.open('Departamento actualizado con éxito', 'Cerrar', { duration: 30000 });
           })
         })
       } else {
         this.dS.insert(this.departamento).subscribe((data)=>{
           this.dS.list().subscribe((data)=>{
             this.dS.setList(data)
+            this.snackBar.open('Departamento registrado con éxito', 'Cerrar', { duration: 30000 });
           })
         });
       }
+    }else {
+      this.snackBar.open('complete los campos correctamente', 'Cerrar', { duration: 30000 });
+      return;
     }
     this.router.navigate(['departamentos'])
   }
@@ -131,7 +136,7 @@ export class CreareditardepartamentoComponent implements OnInit {
           hcodigo: new FormControl(data.idDepartamento),
           hnombre: new FormControl(data.nombreDepartamento, [
             Validators.required,
-            Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9\s]+$/) // Validación para evitar caracteres especiales
+            Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9\s]+$/)
           ])
         });
       });

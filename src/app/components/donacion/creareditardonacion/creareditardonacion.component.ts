@@ -97,11 +97,9 @@ export class CreareditardonacionComponent implements OnInit {
       this.listaTipoDonaciones = data;
     });
   }
+  
   insertar(): void {
-    if (this.form.invalid) {
-      this.snackBar.open('Por favor, complete todos los campos correctamente', 'Cerrar', { duration: 30000 });
-      return;
-    }
+
 
     if (this.form.valid) {
       this.do.idDonacion = this.form.value.hcodigo;
@@ -124,11 +122,15 @@ export class CreareditardonacionComponent implements OnInit {
         this.doS.insert(this.do).subscribe((data) => {
           this.doS.list().subscribe((data) => {
             this.doS.setList(data);
+            this.snackBar.open('Registrado con éxito', 'Cerrar', { duration: 3000 });
           });
         });
       }
+    } else {
+      this.snackBar.open('complete los campos correctamente', 'Cerrar', { duration: 30000 });
+      return;
     }
-    this.snackBar.open('Registrado con éxito', 'Cerrar', { duration: 3000 });
+
     this.router.navigate(['donaciones']);
   }
 

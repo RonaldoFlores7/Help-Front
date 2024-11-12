@@ -108,15 +108,20 @@ export class CreareditartipousuarioComponent implements OnInit {
         this.tuS.update(this.tipousuario).subscribe((data)=> {
           this.tuS.list().subscribe((data)=>{
             this.tuS.setList(data);
+            this.snackBar.open('Tipo de Usuario actualizado con éxito', 'Cerrar', { duration: 30000 });
           })
         })
       } else {
         this.tuS.insert(this.tipousuario).subscribe((d) => {
           this.tuS.list().subscribe((d) => {
             this.tuS.setList(d);
+            this.snackBar.open('Tipo de Usuario registrado con éxito', 'Cerrar', { duration: 30000 });
           });
         });
       }
+    } else {
+      this.snackBar.open('complete los campos correctamente', 'Cerrar', { duration: 30000 });
+      return;
     }
     this.router.navigate(['tipoUsuarios']);
   }

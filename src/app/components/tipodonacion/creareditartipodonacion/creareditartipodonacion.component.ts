@@ -93,15 +93,20 @@ export class CreareditartipodonacionComponent implements OnInit {
         this.tdS.update(this.tipodonacion).subscribe((data)=>{
           this.tdS.list().subscribe((data)=>{
             this.tdS.setList(data)
+            this.snackBar.open('Tipo de Donación actualizado con éxito', 'Cerrar', { duration: 30000 });
           })
         })
       } else {
         this.tdS.insert(this.tipodonacion).subscribe((d) => {
           this.tdS.list().subscribe((d) => {
             this.tdS.setList(d);
+            this.snackBar.open('Tipo de Donación registrado con éxito', 'Cerrar', { duration: 30000 });
           });
         }); 
       }
+    } else {
+      this.snackBar.open('complete los campos correctamente', 'Cerrar', { duration: 30000 });
+      return;
     }
     this.router.navigate(['tipoDonacion']);
   }
