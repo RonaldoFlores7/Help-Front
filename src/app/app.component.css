@@ -46,3 +46,16 @@ button.mat-button[matMenuTriggerFor]:hover {
   background-color: #FF5858; /* Fondo en un rojo más oscuro al pasar el mouse */
 }
 
+.custom-menu-item {   
+  color: white; 
+  &:hover {
+    color: white; 
+  }
+}
+.left-menu {
+  display: flex; /* Permite alinear los botones horizontalmente */
+}
+
+.right-menu {
+  margin-left: auto; /* Empuja el menú de usuarios a la derecha */
+}
