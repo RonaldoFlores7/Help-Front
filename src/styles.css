@@ -11,8 +11,9 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 body {
-    background-image: url('/icons/images1.jpg');
-    background-color: rgb(255, 198, 0);
+  background-image: url('/icons/images1.jpg');
+  background-color: rgba(0, 0, 0, 0.603); /* Negro translúcido */
+  background-blend-mode: multiply; /* Combina la imagen y el color */
   background-position: center center;
   background-repeat: no-repeat;
   background-size: 170em;;
