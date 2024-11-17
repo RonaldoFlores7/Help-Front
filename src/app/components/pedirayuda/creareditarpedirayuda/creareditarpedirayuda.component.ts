@@ -42,8 +42,8 @@ export class CreareditarpedirayudaComponent implements OnInit {
   pa: PedirAyuda = new PedirAyuda();
   id: number = 0;
   edicion: boolean = false;
-  title: string = ''; // Para el título
-  buttonText: string = ''; // Para el texto del botón
+  title: string = ''; 
+  buttonText: string = ''; 
   listaDistritos: Distrito[] = [];
   listaUsuarios: Usuario[] = [];
   map: google.maps.Map | undefined;
