@@ -20,10 +20,22 @@ import { CreareditardonacionComponent } from './components/donacion/creareditard
 import { ReportesComponent } from './components/reportes/reportes.component';
 import { Component } from '@angular/core';
 import { DonacionesporusuarioComponent } from './components/reportes/donacionesporusuario/donacionesporusuario.component';
+import { LoginComponent } from './components/login/login.component';
+import { seguridadGuard } from './guard/seguridad.guard';
+import { HomeComponent } from './components/home/home.component';
 
 
 
 export const routes: Routes = [
+    {
+        path: '',
+        redirectTo: 'login',
+        pathMatch: 'full',
+    },
+    {
+        path: 'login',
+        component: LoginComponent,
+    },
     {
         path:'departamentos', component:DepartamentoComponent,
         children:[
@@ -33,7 +45,8 @@ export const routes: Routes = [
             {
                 path:'ediciones/:id', component:CreareditardepartamentoComponent
             }
-        ]
+        ],
+        canActivate: [seguridadGuard],
     },
     {
         path:'tipoUsuarios', component:TipousuarioComponent,
@@ -44,7 +57,8 @@ export const routes: Routes = [
             {
                 path:'ediciones/:id', component:CreareditartipousuarioComponent
             }
-        ]
+        ],
+        canActivate: [seguridadGuard],
     },
     {
         path:'tipoDonacion', component:TipodonacionComponent,
@@ -132,5 +146,10 @@ export const routes: Routes = [
           path: 'donacionesPorUsuario', component:DonacionesporusuarioComponent
         }
       ]
-    }
+    },
+    {
+        path: 'homes',
+        component: HomeComponent,
+        canActivate: [seguridadGuard], // solo construcciones, se debe agregar a cada uno
+    },
 ];

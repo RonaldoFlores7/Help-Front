@@ -1,0 +1,28 @@
+<div class="login-page">
+ <div class="container" style="text-align: center">
+    <div>
+      <img src="icons/helplogo.png" alt="Logo de la empresa" >
+
+    </div>
+    <h2>Iniciar sesión</h2>
+    <mat-form-field class="example-full-width">
+      <mat-label>Usuario</mat-label> 
+      <mat-icon matSuffix >person</mat-icon>
+      <input matInput placeholder="Username" [(ngModel)]="username" />
+    </mat-form-field>
+    <br />
+    <mat-form-field class="example-full-width">
+      <mat-label>Password</mat-label>
+      <mat-icon matSuffix>lock</mat-icon>
+      <input
+        type="password"
+        matInput
+        placeholder="Password"
+        [(ngModel)]="password"
+      />
+    </mat-form-field>
+    <br />
+    <button class="button-submit"  (click)="login()">Ingresar</button>
+</div>
+</div>
+

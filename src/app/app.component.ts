@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import { DepartamentoComponent } from './components/departamento/departamento.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -13,6 +13,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { PedirayudaComponent } from './components/pedirayuda/pedirayuda.component';
 import { CampaniaComponent } from './components/campania/campania.component';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { LoginService } from './services/login.service';
+import { CommonModule } from '@angular/common';
+import { HomeComponent } from './components/home/home.component';
 
 
 @Component({
@@ -31,14 +34,35 @@ import { GoogleMapsModule } from '@angular/google-maps';
     TipocampaniaComponent,
     UsuarioComponent,
     DistritoComponent,
-    PedirayudaComponent,
+    PedirayudaComponent, HomeComponent,
     CampaniaComponent,
     GoogleMapsModule,
+    RouterLink, CommonModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent {
   title = 'FrontendGrupo4';
+  role: string = '';
+  constructor(private loginService: LoginService) {}
+  cerrar() {
+    sessionStorage.clear();
+  }
 
+  verificar() {
+    this.role = this.loginService.showRole();
+    return this.loginService.verificar();
+  }
+  isAdmin() {
+    return this.role === 'ADMIN';
+  }
+
+  isDamnificado() {
+    return this.role === 'DAMNIFICADO';
+  }
+
+  isDonador() {
+    return this.role === 'DONADOR';
+  }
 }

@@ -1,14 +1,16 @@
 .custom-toolbar {
-  background-color: rgb(255, 198, 0); /* Fondo claro del toolbar */
-  color: #a10e0e; /* Color de texto en rojo intenso */
+  background-color: rgb(255, 198, 0);
+  color: #a10e0e;
   padding: 0 16px;
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Espacio equitativo entre icono y botones */
+  justify-content: space-between;
   width: 100%;
-  max-width: 1200px; /* Ajusta el ancho máximo de la barra de herramientas */
-  height: 60px; /* Altura personalizada */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);/* Altura personalizada para un mejor diseño */
+  height: 60px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky; /* Makes the toolbar static at the top */
+  top: 0; /* Sticks it to the top */
+  z-index: 1000; /* Ensures it stays above other elements */
 }
 
 mat-icon {
@@ -46,3 +48,16 @@ button.mat-button[matMenuTriggerFor]:hover {
   background-color: #FF5858; /* Fondo en un rojo más oscuro al pasar el mouse */
 }
 
+.custom-menu-item {   
+  color: white; 
+  &:hover {
+    color: white; 
+  }
+}
+.left-menu {
+  display: flex; /* Permite alinear los botones horizontalmente */
+}
+
+.right-menu {
+  margin-left: auto; /* Empuja el menú de usuarios a la derecha */
+}
