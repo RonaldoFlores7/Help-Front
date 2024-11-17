@@ -7,12 +7,13 @@ import { LoginService } from '../../services/login.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { JwtRequest } from '../../models/jwtRequest';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [MatFormFieldModule,FormsModule,MatInputModule,MatButtonModule],
+  imports: [MatFormFieldModule,FormsModule,MatInputModule,MatButtonModule,MatIconModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
