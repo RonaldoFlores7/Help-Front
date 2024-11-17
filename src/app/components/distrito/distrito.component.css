@@ -1,7 +1,8 @@
 .right-panel {
     flex: 1; /* Panel derecho toma 1 parte del espacio */
     padding: 40px;
-    background-color: #ff6b6b;
+    background: rgba(255, 255, 255, 0.2); /* Fondo semi-transparente */
+    backdrop-filter: blur(10px); /* Efecto borroso */
     color: white;
     overflow-y: auto;
     text-align: left;
