@@ -4,44 +4,56 @@
   
   <!-- Sección izquierda de la barra de herramientas -->
   <div class="left-menu">
+    <button mat-icon-button routerLink="/homes">
+      <mat-icon>home</mat-icon>
+    </button>
     <button
       mat-button
       [matMenuTriggerFor]="menuDepartamentos"
       style="color: rgb(0, 0, 0)"
-      *ngIf="isDeveloper()"
-    >
+      *ngIf="isAdmin() || isDonador() || isDamnificado()"
+      >
       Departamentos
     </button>
     <button
       mat-button
       [matMenuTriggerFor]="menuTipoUsuarios"
       style="color: rgb(0, 0, 0)"
-      *ngIf="isTester()"
+      *ngIf="isAdmin()"
     >
       Tipo Usuarios
     </button>
-    <button mat-button [matMenuTriggerFor]="menuTipoDonaciones" style="color: rgb(0, 0, 0)">
+    <button mat-button [matMenuTriggerFor]="menuTipoDonaciones" style="color: rgb(0, 0, 0)"
+    *ngIf="isAdmin() || isDonador()"
+    >
       Tipo Donaciones
     </button>
-    <button mat-button [matMenuTriggerFor]="menuUsuarios" style="color: rgb(0, 0, 0)">
+    <button mat-button [matMenuTriggerFor]="menuUsuarios" style="color: rgb(0, 0, 0)"
+    *ngIf="isAdmin()">
       Usuarios
     </button>
-    <button mat-button [matMenuTriggerFor]="menuTipoCampanias" style="color: rgb(0, 0, 0)">
+    <button mat-button [matMenuTriggerFor]="menuTipoCampanias" style="color: rgb(0, 0, 0)"
+    *ngIf="isAdmin()|| isDonador()">
       Tipo Campañas
     </button>
-    <button mat-button [matMenuTriggerFor]="menuDistritos" style="color: rgb(0, 0, 0)">
+    <button mat-button [matMenuTriggerFor]="menuDistritos" style="color: rgb(0, 0, 0)"
+    *ngIf="isAdmin() || isDonador() || isDamnificado()">
       Distritos
     </button>
-    <button mat-button [matMenuTriggerFor]="menuPedirAyudas" style="color: rgb(0, 0, 0)">
+    <button mat-button [matMenuTriggerFor]="menuPedirAyudas" style="color: rgb(0, 0, 0)"
+    *ngIf="isAdmin() || isDamnificado()">
       Pedidos de Ayuda
     </button>
-    <button mat-button [matMenuTriggerFor]="menuCampanias" style="color: rgb(0, 0, 0)">
+    <button mat-button [matMenuTriggerFor]="menuCampanias" style="color: rgb(0, 0, 0)"
+    *ngIf="isAdmin()|| isDonador()">
       Campañas
     </button>
-    <button mat-button [matMenuTriggerFor]="menuDonaciones" style="color: rgb(0, 0, 0)">
+    <button mat-button [matMenuTriggerFor]="menuDonaciones" style="color: rgb(0, 0, 0)"
+    *ngIf="isAdmin()|| isDonador()">
       Donaciones
     </button>
-    <button mat-button [matMenuTriggerFor]="menuReportes" style="color: white">
+    <button mat-button [matMenuTriggerFor]="menuReportes" style="color: white"
+    *ngIf="isAdmin()">
       <mat-icon>insert_chart</mat-icon>Reportes
     </button>
   </div>
@@ -53,7 +65,6 @@
     </button>
   </div>
 </mat-toolbar>
-
 
 <mat-menu #menuDepartamentos="matMenu">
   <button mat-menu-item routerLink="/departamentos">Listar</button>

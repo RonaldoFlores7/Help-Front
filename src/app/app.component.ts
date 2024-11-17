@@ -15,6 +15,7 @@ import { CampaniaComponent } from './components/campania/campania.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { LoginService } from './services/login.service';
 import { CommonModule } from '@angular/common';
+import { HomeComponent } from './components/home/home.component';
 
 
 @Component({
@@ -33,7 +34,7 @@ import { CommonModule } from '@angular/common';
     TipocampaniaComponent,
     UsuarioComponent,
     DistritoComponent,
-    PedirayudaComponent,
+    PedirayudaComponent, HomeComponent,
     CampaniaComponent,
     GoogleMapsModule,
     RouterLink, CommonModule
@@ -53,11 +54,15 @@ export class AppComponent {
     this.role = this.loginService.showRole();
     return this.loginService.verificar();
   }
-  isDeveloper() {
-    return this.role === 'DEVELOPER';
+  isAdmin() {
+    return this.role === 'ADMIN';
   }
 
-  isTester() {
-    return this.role === 'TESTER';
+  isDamnificado() {
+    return this.role === 'DAMNIFICADO';
+  }
+
+  isDonador() {
+    return this.role === 'DONADOR';
   }
 }
