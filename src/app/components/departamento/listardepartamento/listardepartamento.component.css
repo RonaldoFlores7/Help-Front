@@ -8,9 +8,11 @@
   }
   
   h1 {
-    color: #333; /* Color del título */
-    font-size: 24px; /* Tamaño de la fuente */
-    margin-bottom: 20px; /* Espaciado debajo del título */
+    font-size: 2em;
+    color: #333;  /* Color gris oscuro */
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px; /* Espaciado debajo del título */
   }
   
   table {
