@@ -69,7 +69,8 @@ export const routes: Routes = [
             {
                 path:'ediciones/:id', component:CreareditartipodonacionComponent
             }
-        ]  
+        ],
+        canActivate: [seguridadGuard],  
     },
     {
         path:'usuarios', component:UsuarioComponent,
@@ -80,7 +81,8 @@ export const routes: Routes = [
             {
                 path:'ediciones/:id', component:CreareditarusuarioComponent
             }
-        ]
+        ],
+        canActivate: [seguridadGuard],
     },
     {
         path:'tipoCampanias', component:TipocampaniaComponent,
@@ -91,7 +93,8 @@ export const routes: Routes = [
             {
                 path:'ediciones/:id', component:CreareditartipocampaniaComponent
             }
-        ]
+        ],
+        canActivate: [seguridadGuard],
     },
     {
         path:'distritos', component:DistritoComponent,
@@ -102,7 +105,8 @@ export const routes: Routes = [
             {
                 path:'ediciones/:id', component:CreareditardistritoComponent
             }
-        ]
+        ],
+        canActivate: [seguridadGuard],
     },
     {
         path:'pedirAyudas', component:PedirayudaComponent,
@@ -113,7 +117,8 @@ export const routes: Routes = [
             {
                 path:'ediciones/:id', component:CreareditarpedirayudaComponent
             }
-        ]
+        ],
+        canActivate: [seguridadGuard],
     },
     {
         path:'campanias', component:CampaniaComponent,
@@ -124,7 +129,8 @@ export const routes: Routes = [
             {
                 path:'ediciones/:id', component:CreareditarcampaniaComponent
             }
-        ]
+        ],
+        canActivate: [seguridadGuard],
     },
     {
         
@@ -136,7 +142,8 @@ export const routes: Routes = [
              {
                     path:'ediciones/:id', component:CreareditardonacionComponent
              }
-        ]
+        ],
+        canActivate: [seguridadGuard],
         
     },
     {
@@ -145,7 +152,8 @@ export const routes: Routes = [
         {
           path: 'donacionesPorUsuario', component:DonacionesporusuarioComponent
         }
-      ]
+      ],
+      canActivate: [seguridadGuard],
     },
     {
         path: 'homes',

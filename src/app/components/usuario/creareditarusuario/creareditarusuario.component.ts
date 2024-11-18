@@ -17,6 +17,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { TipousuarioService } from '../../../services/tipousuario.service';
 import { CommonModule } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-creareditarusuario',
@@ -27,7 +28,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     MatInputModule,
     MatSelectModule,
     MatButtonModule,
-    CommonModule
+    CommonModule, MatCheckboxModule
   ],
   templateUrl: './creareditarusuario.component.html',
   styleUrl: './creareditarusuario.component.css',
@@ -77,7 +78,9 @@ export class CreareditarusuarioComponent implements OnInit {
       hnombre: ['', [Validators.required, Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/)]],
       hapellidos: ['', [Validators.required, Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/)]],
       hcorreo: ['', [Validators.required, Validators.email]],
+      husername: ['', [Validators.required, Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/)]],
       hcontrasenia: ['', Validators.required],
+      henabled: [false],
       htipo: ['', Validators.required],
     });
 
@@ -115,7 +118,9 @@ export class CreareditarusuarioComponent implements OnInit {
       this.us.nombre = this.form.value.hnombre;
       this.us.apellidos = this.form.value.hapellidos;
       this.us.correo = this.form.value.hcorreo;
-      this.us.contrasenia = this.form.value.hcontrasenia;
+      this.us.username=this.form.value.username;
+      this.us.password = this.form.value.hcontrasenia;
+      this.us.enabled=this.form.value.henabled;
       this.us.tu.idTipoUsuario = this.form.value.htipo;
       if (this.edicion) {
         this.uS.update(this.us).subscribe((data) => {
@@ -149,7 +154,9 @@ export class CreareditarusuarioComponent implements OnInit {
           hnombre: new FormControl(data.nombre, [Validators.required, Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/)]),
           hapellidos: new FormControl(data.apellidos, [Validators.required, Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/)]),
           hcorreo: new FormControl(data.correo, [Validators.required, Validators.email]),
-          hcontrasenia: new FormControl(data.contrasenia, Validators.required),
+          husername: new FormControl(data.username, Validators.required),
+          henabled: [false],
+          hcontrasenia: new FormControl(data.password, Validators.required),
           htipo: new FormControl(data.tu.idTipoUsuario, Validators.required),
         });
       });

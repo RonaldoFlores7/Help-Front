@@ -73,25 +73,24 @@ export class CreareditartipousuarioComponent implements OnInit {
     });
   }
 
-  private isDuplicated(nombre: string): boolean {
-    const nombreLower = nombre.trim().toLowerCase();
+  private isDuplicated(rol: string): boolean {
+    const nombreLower = rol.trim().toLowerCase();
     if (this.edicion) {
       return this.existingUsers.some(
-        (usuario) =>
-          usuario.nombre.trim().toLowerCase() === nombreLower &&
-          usuario.idTipoUsuario !== this.id
+        (tipousuario) =>
+          tipousuario.rol.trim().toLowerCase() === nombreLower &&
+        tipousuario.idTipoUsuario !== this.id
       );
     } else {
       return this.existingUsers.some(
-        (usuario) => usuario.nombre.trim().toLowerCase() === nombreLower
+        (tipousuario) => tipousuario.rol.trim().toLowerCase() === nombreLower
       );
     }
   }
 
   insertar(): void {
-
     const nombre = this.form.value.htipo?.trim();
-
+  
     // Validar si ya existe un tipo de usuario con el mismo nombre
     if (this.isDuplicated(nombre)) {
       this.snackBar.open('El tipo de usuario ya existe', 'Cerrar', {
@@ -100,17 +99,20 @@ export class CreareditartipousuarioComponent implements OnInit {
       });
       return;
     }
-
+  
     if (this.form.valid) {
       this.tipousuario.idTipoUsuario = this.form.value.hcodigo;
-      this.tipousuario.nombre = this.form.value.htipo;
+      this.tipousuario.rol = this.form.value.htipo;
+     
+      console.log(this.tipousuario)
+
       if (this.edicion) {
-        this.tuS.update(this.tipousuario).subscribe((data)=> {
-          this.tuS.list().subscribe((data)=>{
+        this.tuS.update(this.tipousuario).subscribe((data) => {
+          this.tuS.list().subscribe((data) => {
             this.tuS.setList(data);
             this.snackBar.open('Tipo de Usuario actualizado con éxito', 'Cerrar', { duration: 30000 });
-          })
-        })
+          });
+        });
       } else {
         this.tuS.insert(this.tipousuario).subscribe((d) => {
           this.tuS.list().subscribe((d) => {
@@ -121,8 +123,8 @@ export class CreareditartipousuarioComponent implements OnInit {
       }
     } else {
       this.snackBar.open('complete los campos correctamente', 'Cerrar', { duration: 30000 });
-      return;
     }
+  
     this.router.navigate(['tipoUsuarios']);
   }
   
@@ -131,7 +133,7 @@ export class CreareditartipousuarioComponent implements OnInit {
       this.tuS.listId(this.id).subscribe((data) => {
         this.form = this.formBuilder.group({
           hcodigo: new FormControl(data.idTipoUsuario),
-          htipo: new FormControl(data.nombre, [
+          htipo: new FormControl(data.rol, [
             Validators.required,
             Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9\s]+$/)
           ])

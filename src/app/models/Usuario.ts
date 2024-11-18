@@ -5,6 +5,8 @@ export class Usuario{
     nombre:string=""
     apellidos:string=""
     correo:string=""
-    contrasenia:string=""
+    username:string=""
+    password:string=""
+    enabled:boolean=false
     tu:TipoUsuario=new TipoUsuario()
 }

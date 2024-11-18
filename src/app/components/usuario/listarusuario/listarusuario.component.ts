@@ -15,7 +15,7 @@ import { RouterLink } from '@angular/router';
 export class ListarusuarioComponent implements OnInit{
   dataSource:MatTableDataSource<Usuario>=new MatTableDataSource()
 
-  displayedColumns:string[]=['cu1', 'cu2', 'cu3', 'cu4', 'cu5', 'cu6', 'accion01', 'accion02']
+  displayedColumns:string[]=['cu1', 'cu2', 'cu3', 'cu4', 'cu5', 'cu6','accion01', 'accion02']
 
   constructor(private uS: UsuarioService) {}
 

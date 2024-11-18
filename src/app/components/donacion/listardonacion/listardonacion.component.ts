@@ -14,7 +14,7 @@ import { DonacionService } from '../../../services/donacion.service';
 })
 export class ListardonacionComponent implements OnInit {
   dataSource: MatTableDataSource<Donacion> = new MatTableDataSource();
-  displayedColumns:string[]=['c1','c2','c3','c4','c5','c6','c7','c8','c9', 'accion02']
+  displayedColumns:string[]=['c1','c2','c3','c5','c6','c7','c8','c9', 'accion02']
 
   constructor(private doS: DonacionService) {}
 

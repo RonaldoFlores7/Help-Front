@@ -78,7 +78,7 @@ export class CreareditardonacionComponent implements OnInit {
       hcodigo: [''],
       htelefono: ['', [Validators.required, Validators.pattern(/^\d{9}$/)]],
       hmontotransferido: ['', [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]],
-      hdescripciondonacion: ['', Validators.required],
+      hdescripciondonacion: ['',],
       hfechadonacion: ['', [Validators.required]],
       hestado: ['', Validators.required],
       husuario: ['', Validators.required],
@@ -111,6 +111,7 @@ export class CreareditardonacionComponent implements OnInit {
       this.do.us.idUsuario = this.form.value.husuario;
       this.do.ca.idCampania = this.form.value.hcampania;
       this.do.td.idTipoDonacion = this.form.value.htipodonacion;
+      console.log(this.do)
       if (this.edicion) {
         this.doS.update(this.do).subscribe((data) => {
           this.doS.list().subscribe((data) => {

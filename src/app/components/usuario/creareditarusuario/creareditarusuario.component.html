@@ -43,7 +43,18 @@
         <mat-error *ngIf="form.get('hcorreo')?.hasError('email')">
           Ingresa un correo válido
         </mat-error>
-      </mat-form-field>      
+      </mat-form-field> 
+      
+      <mat-form-field>
+        <mat-label>Username</mat-label>
+        <input matInput placeholder="David1234" formControlName="husername" />
+        <mat-error *ngIf="form.get('husername')?.hasError('required')">
+          El campo es obligatorio
+        </mat-error>
+        <mat-error *ngIf="form.get('husername')?.hasError('pattern')">
+          Solo se permiten letras y espacios
+        </mat-error>
+      </mat-form-field>
 
       <mat-form-field>
         <mat-label>Contraseña</mat-label>
@@ -57,11 +68,15 @@
         {{ showPassword ? 'Ocultar' : 'Mostrar' }}
       </button>
 
+      <mat-checkbox formControlName="henabled" style="margin-top: 16px; display: block;">
+        Enabled
+      </mat-checkbox>
+
       <mat-form-field>
-        <mat-label>Tipo</mat-label>
+        <mat-label>Rol</mat-label>
         <mat-select formControlName="htipo">
           <mat-option *ngFor="let tipo of listaTipos" [value]="tipo.idTipoUsuario">
-            {{ tipo.nombre }}
+            {{ tipo.idTipoUsuario }}
           </mat-option>
         </mat-select>
         <mat-error *ngIf="form.get('htipo')?.hasError('required')">
